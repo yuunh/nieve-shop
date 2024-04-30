@@ -1,28 +1,17 @@
 package com.nieve.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
 public class Review {
 
     private String reviewTitle;
     private String reviewContent;
 
-    public Review(String reviewTitle, String reviewContent) {
-        this.reviewTitle = reviewTitle;
-        this.reviewContent = reviewContent;
-    }
-
-    public String getReviewTitle() {
-        return reviewTitle;
-    }
-
-    public void setReviewTitle(String reviewTitle) {
-        this.reviewTitle = reviewTitle;
-    }
-
-    public String getReviewContent() {
-        return reviewContent;
-    }
-
-    public void setReviewContent(String reviewContent) {
-        this.reviewContent = reviewContent;
-    }
 }

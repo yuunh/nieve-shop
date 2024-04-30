@@ -1,15 +1,19 @@
 package com.nieve.ctrl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import com.nieve.service.MemberService;
 
 @Controller
 public class HomeController {
+    @Autowired MemberService memberService;
 
     @GetMapping("/")
     public String root(Model m) {
         m.addAttribute("user_name", "이윤화");
+        memberService.saveMember("hello@test.com");
         return "index";
     }
 
