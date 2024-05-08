@@ -42,10 +42,6 @@ public class ShopController {
 
         List<Product> cartList = productService.getCartList();
 
-        cartList.add(new Product("Colorful Stylish Shirt", "img/product/product_5.png", 150.00));
-        cartList.add(new Product("Full Skirt Dress", "img/product/product_2.png", 160.00));
-        cartList.add(new Product("Trendy Blouse", "img/product/product_4.png", 180.00));
-
         m.addAttribute("cartList", cartList);
 
         return "cart";
@@ -55,10 +51,6 @@ public class ShopController {
     public String confirmation(Model m) {
 
         List<Product> confirmationList = new ArrayList<>();
-
-        confirmationList.add(new Product("Colorful Stylish Shirt", "img/product/product_5.png", 150.00));
-        confirmationList.add(new Product("Beautiful Skirt", "img/product/product_3.png", 200.00));
-        confirmationList.add(new Product("BodyCon Dress", "img/product/product_6.png", 130.00));
 
         m.addAttribute("confirmationList", confirmationList);
 

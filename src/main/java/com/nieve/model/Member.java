@@ -1,16 +1,16 @@
-package com.nieve.entity;
+package com.nieve.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
-@Entity(name = "member")
-@Data
 @Getter
+@Setter
 @Builder
-public class MemberEntity {
+@AllArgsConstructor
+public class Member {
 
-    @Id
     private int memNo;
     private String memName;
     private String memEmail;

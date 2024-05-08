@@ -166,7 +166,7 @@
                         <th:block th:each="product : ${productList}">
                             <div class="col-lg-4 col-sm-6">
                                 <div class="single_product_item">
-                                    <img th:src="@{${product.productImg}}" alt="">
+                                    <img th:src="${'/files/' + product.fileName}">
                                     <div class="single_product_text">
                                         <h4 th:text="${product.productName}"></h4>
                                         <h3 th:text="'$' + ${product.productPrice}"></h3>

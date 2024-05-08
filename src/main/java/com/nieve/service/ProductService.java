@@ -1,7 +1,9 @@
 package com.nieve.service;
 
+import com.nieve.entity.FileEntity;
 import com.nieve.entity.ProductEntity;
 import com.nieve.entity.ReviewEntity;
+import com.nieve.model.File;
 import com.nieve.model.Product;
 import com.nieve.model.Review;
 import com.nieve.repository.ProductRepository;
@@ -21,13 +23,13 @@ public class ProductService {
     public List<Product> getProductList() {
 
         List<ProductEntity> productList = productRepository.findAll();
-
         List<Product> products = new ArrayList<>();
         for (ProductEntity pe : productList) {
+            FileEntity fe = pe.getFile();
             Product p = Product.builder()
                     .productName(pe.getProductName())
                     .productPrice(pe.getProductPrice())
-                    .productImg(pe.getProductImg())
+                    .fileName(fe.getChangeName())
                     .build();
             products.add(p);
         }
@@ -57,10 +59,11 @@ public class ProductService {
 
         List<Product> carts = new ArrayList<>();
         for (ProductEntity pe : cartList) {
+            FileEntity fe = pe.getFile();
             Product p = Product.builder()
                     .productName(pe.getProductName())
-                    .productImg(pe.getProductImg())
                     .productPrice(pe.getProductPrice())
+                    .fileName(fe.getChangeName())
                     .build();
             carts.add(p);
         }

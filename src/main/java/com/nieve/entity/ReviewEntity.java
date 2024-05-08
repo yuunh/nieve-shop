@@ -1,7 +1,6 @@
 package com.nieve.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 
@@ -14,4 +13,8 @@ public class ReviewEntity {
     private int reviewNo;
     private String reviewTitle;
     private String reviewContent;
+
+    @OneToOne
+    @JoinColumn(name="fileNo", unique = false)
+    private FileEntity file;
 }

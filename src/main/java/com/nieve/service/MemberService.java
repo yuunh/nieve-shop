@@ -11,7 +11,7 @@ public class MemberService {
 
     public String saveMember(String email){
         MemberEntity entity = MemberEntity.builder()
-                        .name("hi").email(email)
+                        .memName("hi").memEmail(email)
                                 .phone("1234").address1("서울시").address2("개봉").postNo("1234").build();
         memberRepository.save(entity);
         return "hello";

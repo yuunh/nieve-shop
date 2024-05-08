@@ -12,7 +12,7 @@ import lombok.Setter;
 public class Product {
 
     private String productName;
-    private String productImg;
     private double productPrice;
-
+    private int fileNo;
+    private String fileName;
 }
