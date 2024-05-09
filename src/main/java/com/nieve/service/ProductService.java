@@ -40,12 +40,13 @@ public class ProductService {
     public List<Review> getReviewList() {
 
         List<ReviewEntity> reviewList = reviewRepository.findAll();
-
         List<Review> reviews = new ArrayList<>();
         for (ReviewEntity re : reviewList) {
+            FileEntity fe = re.getFile();
             Review r = Review.builder()
                     .reviewTitle(re.getReviewTitle())
                     .reviewContent(re.getReviewContent())
+                    .fileName(fe.getChangeName())
                     .build();
             reviews.add(r);
         }
