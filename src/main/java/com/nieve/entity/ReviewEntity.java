@@ -13,6 +13,7 @@ public class ReviewEntity {
     private int reviewNo;
     private String reviewTitle;
     private String reviewContent;
+    private int reviewStar;
 
     @OneToOne
     @JoinColumn(name="fileNo", unique = false)

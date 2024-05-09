@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>aranoz</title>
+  <title>상품 상세 페이지</title>
   <link rel="icon" href="img/favicon.png">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -30,7 +30,6 @@
    <div th:replace="fragments/header :: 'header'"></div>
    <!-- Header part end-->
 
-  <!-- breadcrumb start-->
   <section class="breadcrumb breadcrumb_bg">
     <div class="container">
       <div class="row justify-content-center">
@@ -45,10 +44,7 @@
       </div>
     </div>
   </section>
-  <!-- breadcrumb start-->
-  <!--================End Home Banner Area =================-->
 
-  <!--================Single Product Area =================-->
   <div class="product_image_area section_padding">
     <div class="container">
       <div class="row s_product_inner justify-content-between">
@@ -101,9 +97,7 @@
       </div>
     </div>
   </div>
-  <!--================End Single Product Area =================-->
 
-  <!--================Product Description Area =================-->
   <section class="product_description_area">
     <div class="container">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -125,31 +119,11 @@
           <p>
             Beryl Cook is one of Britain’s most talented and amusing artists
             .Beryl’s pictures feature women of all shapes and sizes enjoying
-            themselves .Born between the two world wars, Beryl Cook eventually
-            left Kendrick School in Reading at the age of 15, where she went
-            to secretarial school and then into an insurance office. After
-            moving to London and then Hampton, she eventually married her next
-            door neighbour from Reading, John Cook. He was an officer in the
-            Merchant Navy and after he left the sea in 1956, they bought a pub
-            for a year before John took a job in Southern Rhodesia with a
-            motor company. Beryl bought their young son a box of watercolours,
-            and when showing him how to use it, she decided that she herself
-            quite enjoyed painting. John subsequently bought her a child’s
-            painting set for her birthday and it was with this that she
-            produced her first significant work, a half-length portrait of a
-            dark-skinned lady with a vacant expression and large drooping
-            breasts. It was aptly named ‘Hangover’ by Beryl’s husband and
+            themselves .
           </p>
           <p>
             It is often frustrating to attempt to plan meals that are designed
-            for one. Despite this fact, we are seeing more and more recipe
-            books and Internet websites that are dedicated to the act of
-            cooking for one. Divorce and the death of spouses or grown
-            children leaving for college are all reasons that someone
-            accustomed to cooking for more than one would suddenly need to
-            learn how to adjust all the cooking practices utilized before into
-            a streamlined plan of cooking that is more efficient for one
-            person creating less
+            for one.
           </p>
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -301,12 +275,12 @@
                   </div>
                 </th:block>
               </div>
-
             </div>
+
             <div class="col-lg-6">
               <div class="review_box">
-                <h4>Add a Review</h4>
-                <p>Your Rating:</p>
+                <h4>리뷰 작성하기</h4>
+                <p>리뷰 평점</p>
                 <ul class="list">
                   <li>
                     <a href="#">
@@ -334,32 +308,25 @@
                     </a>
                   </li>
                 </ul>
-                <p>Outstanding</p>
-                <form class="row contact_form" action="contact_process.php" method="post" novalidate="novalidate">
+                <form id="reviewForm" class="row contact_form" action="/writeReview" method="post" novalidate>
+                  <input type="hidden" name="reviewStar" id="reviewStar" value="5">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="name" placeholder="Your Full name" />
+                      <input type="text" class="form-control" name="reviewTitle" id="reviewTitle" placeholder="리뷰 제목" />
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input type="email" class="form-control" name="email" placeholder="Email Address" />
+                      <input type="text" class="form-control" name="reviewContent" id="reviewContent" placeholder="리뷰를 작성해주세요 :)" />
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input type="text" class="form-control" name="number" placeholder="Phone Number" />
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <textarea class="form-control" name="message" rows="1" placeholder="Review"></textarea>
+                      <input type="file" class="form-control" name="reviewImg" id="reviewImg">
                     </div>
                   </div>
                   <div class="col-md-12 text-right">
-                    <button type="submit" value="submit" class="btn_3">
-                      Submit Now
-                    </button>
+                    <button type="button" class="btn_3" onclick="submitReview()">리뷰 작성완료</button>
                   </div>
                 </form>
               </div>
@@ -369,7 +336,49 @@
       </div>
     </div>
   </section>
-  <!--================End Product Description Area =================-->
+
+   <script>
+     function submitReview() {
+
+       var reviewStar = document.getElementById("reviewStar").value;
+       var reviewTitle = document.getElementById("reviewTitle").value;
+       var reviewContent = document.getElementById("reviewContent").value;
+       var reviewImg = document.getElementById("reviewImg").files[0];
+
+       var formData = new FormData();
+       formData.append("reviewStar", reviewStar);
+       formData.append("reviewTitle", reviewTitle);
+       formData.append("reviewContent", reviewContent);
+       formData.append("reviewImg", reviewImg);
+
+       jQuery.ajax({
+         method : "POST",
+         url : "/writeReview",
+         data : formData,
+<!--         {-->
+<!--           reviewStar : reviewStar,-->
+<!--           reviewTitle : reviewTitle,-->
+<!--           reviewContent : reviewContent,-->
+<!--           reviewImg : reviewImg-->
+<!--         },-->
+         processData : false,
+         contentType : false,
+         success : function(result) {
+           alert('리뷰가 성공적으로 등록되었습니다.');
+         }
+       })
+     }
+   </script>
+
+   <script>
+     function addToCart(){
+       jQuery.ajax({
+         method: "post",
+         url: "/test",
+         params: {"test" : "abc"}
+       });
+     }
+   </script>
 
    <!--::footer_part start::-->
    <div th:replace="fragments/footer :: 'footer'"></div>
@@ -405,17 +414,6 @@
   <!-- custom js -->
   <script src="js/theme.js"></script>
   <script src="js/custom.js"></script>
-
-<script>
-  function addToCart(){
-    jQuery.ajax({
-      method: "post",
-      url: "/test",
-      params: {"test" : "abc"}
-    });
-  }
-
-</script>
 </body>
 
 </html>
