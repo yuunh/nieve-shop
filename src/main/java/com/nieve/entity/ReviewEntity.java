@@ -1,12 +1,14 @@
 package com.nieve.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 
 @Entity(name = "review")
 @Data
 @Getter
+@Builder
 public class ReviewEntity {
 
     @Id

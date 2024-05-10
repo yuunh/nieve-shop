@@ -50,7 +50,12 @@
                                 </ul>
                             </div>
                             <div class="hearer_icon d-flex">
-                                <a th:text="${user_name}"></a>
+                                <div sec:authorize="isAuthenticated()">
+                                    <a th:value="${user_name}">myPage</a>
+                                </div>
+                                <div sec:authorize="isAnonymous()">
+                                    <a href="/login.html">로그인</a>
+                                </div>
                                 <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
                                 <a href=""><i class="ti-heart"></i></a>
                                 <div class="dropdown cart">

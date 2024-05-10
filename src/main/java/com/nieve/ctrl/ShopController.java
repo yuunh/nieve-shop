@@ -3,10 +3,16 @@ package com.nieve.ctrl;
 import com.nieve.model.Product;
 import com.nieve.model.Review;
 import com.nieve.service.ProductService;
+import com.nieve.service.ReviewService;
+import com.nieve.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +22,9 @@ import java.util.List;
 public class ShopController {
 
     @Autowired private ProductService productService;
+    @Autowired private StorageService storageService;
+
+    @Autowired private ReviewService reviewService;
 
     @GetMapping("/category.html")
     public String category(Model m) {
@@ -30,7 +39,8 @@ public class ShopController {
     @GetMapping("/single-product.html")
     public String review(Model m) {
 
-        List<Review> reviewList = productService.getReviewList();
+
+        List<Review> reviewList = reviewService.getReviewList();
 
         m.addAttribute("reviewList", reviewList);
 
@@ -55,5 +65,15 @@ public class ShopController {
         m.addAttribute("confirmationList", confirmationList);
 
         return "confirmation";
+    }
+
+
+    @PostMapping("/writeReview")
+    public String writeReview(@ModelAttribute Review review, @RequestParam("reviewImg")MultipartFile imageFile){
+
+        int fileNo = storageService.store(imageFile);
+        review.setFileNo(fileNo);
+        reviewService.addReview(review);
+        return "OK";
     }
 }

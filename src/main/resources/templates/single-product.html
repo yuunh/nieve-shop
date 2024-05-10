@@ -339,28 +339,16 @@
 
    <script>
      function submitReview() {
-
-       var reviewStar = document.getElementById("reviewStar").value;
-       var reviewTitle = document.getElementById("reviewTitle").value;
-       var reviewContent = document.getElementById("reviewContent").value;
-       var reviewImg = document.getElementById("reviewImg").files[0];
-
        var formData = new FormData();
-       formData.append("reviewStar", reviewStar);
-       formData.append("reviewTitle", reviewTitle);
-       formData.append("reviewContent", reviewContent);
-       formData.append("reviewImg", reviewImg);
+       formData.append("reviewStar", $("#reviewStar").val());
+       formData.append("reviewTitle", $("#reviewTitle").val());
+       formData.append("reviewContent", $("#reviewContent").val());
+       formData.append("reviewImg", $("#reviewImg")[0].files[0]);
 
        jQuery.ajax({
          method : "POST",
          url : "/writeReview",
          data : formData,
-<!--         {-->
-<!--           reviewStar : reviewStar,-->
-<!--           reviewTitle : reviewTitle,-->
-<!--           reviewContent : reviewContent,-->
-<!--           reviewImg : reviewImg-->
-<!--         },-->
          processData : false,
          contentType : false,
          success : function(result) {
@@ -372,7 +360,7 @@
 
    <script>
      function addToCart(){
-       jQuery.ajax({
+       $.ajax({
          method: "post",
          url: "/test",
          params: {"test" : "abc"}

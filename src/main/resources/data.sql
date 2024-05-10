@@ -24,9 +24,9 @@ INSERT INTO `attachment` (`file_no`, `upload_date`, `change_name`, `file_path`, 
 INSERT INTO `product` (`product_no`, `product_name`, `product_price`, `product_stock`, `category_no`, `file_no`) VALUES (1, 'Colorful Stylish Shirt', 15000, 26, 1, 1);
 
 
-DELETE FROM review where 1 = 1;
-INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content) VALUES (1, '1', '1', '1', '생각했던 원단재질이 아니라 조금실망스러워요', '55사이즈인 분들에게는 조금넉넉한핏입니다');
-INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content) VALUES (2, '2', '1', '1', '베스트 코디아이템이 될것같습니다', '주줌옷은 좀많이큰편이여서 많이 망설이다가 픽!!! 입어보니 넘만족합니다 적당한여유핏과 가벼운착용감 스판소재');
-INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content) VALUES (3, '3', '1', '1', '작년에 브라운 구입 후 올해는 네이비 구입했어요..', '네이비도 넘 하늘하늘 이뻐요.. 저는 아이보리 조끼랑 같이 입고 출근했어요..@^^@');
-INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content) VALUES (4, '4', '1', '1', '잘입겠슴니다.', '제가 좋아하는 스타일이라 맘설임없이 주문했는데. 원단 고급지고 스타일도 예쁘네요. 약간 오버핏이네요.');
-INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content) VALUES (5, '5', '1', '1', '마음에 듭니다', '옷감이 부드럽고 색상도 환하니 얼굴이 더 밝아 보여서 마음에 듭니다.');
+--DELETE FROM review where 1 = 1;
+--INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content) VALUES (1, '1', '1', '1', '생각했던 원단재질이 아니라 조금실망스러워요', '55사이즈인 분들에게는 조금넉넉한핏입니다');
+--INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content) VALUES (2, '2', '1', '1', '베스트 코디아이템이 될것같습니다', '주줌옷은 좀많이큰편이여서 많이 망설이다가 픽!!! 입어보니 넘만족합니다 적당한여유핏과 가벼운착용감 스판소재');
+--INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content) VALUES (3, '3', '1', '1', '작년에 브라운 구입 후 올해는 네이비 구입했어요..', '네이비도 넘 하늘하늘 이뻐요.. 저는 아이보리 조끼랑 같이 입고 출근했어요..@^^@');
+--INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content) VALUES (4, '4', '1', '1', '잘입겠슴니다.', '제가 좋아하는 스타일이라 맘설임없이 주문했는데. 원단 고급지고 스타일도 예쁘네요. 약간 오버핏이네요.');
+--INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content) VALUES (5, '5', '1', '1', '마음에 듭니다', '옷감이 부드럽고 색상도 환하니 얼굴이 더 밝아 보여서 마음에 듭니다.');
