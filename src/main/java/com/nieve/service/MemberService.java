@@ -1,9 +1,13 @@
 package com.nieve.service;
 
 import com.nieve.entity.MemberEntity;
+import com.nieve.model.Member;
 import com.nieve.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MemberService {
@@ -15,5 +19,36 @@ public class MemberService {
                                 .phone("1234").address1("서울시").address2("개봉").postNo("1234").build();
         memberRepository.save(entity);
         return "hello";
+    }
+
+    public void memberInsert(Member member) {
+
+        MemberEntity me = MemberEntity.builder()
+                .memEmail(member.getMemEmail())
+                .memPwd(member.getMemPwd())
+                .memName(member.getMemName())
+                .phone(member.getPhone())
+                .address1(member.getAddress1())
+                .build();
+        memberRepository.save(me);
+    }
+
+    public List<Member> getMemberList() {
+
+        List<MemberEntity> memberList = memberRepository.findAll();
+
+        List<Member> members = new ArrayList<>();
+        for (MemberEntity me : memberList) {
+            Member m = Member.builder()
+                    .memEmail(me.getMemEmail())
+                    .memPwd(me.getMemPwd())
+                    .memName(me.getMemName())
+                    .phone(me.getPhone())
+                    .address1(me.getAddress1())
+                    .build();
+            members.add(m);
+        }
+
+        return members;
     }
 }

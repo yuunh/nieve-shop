@@ -1,0 +1,104 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>회원가입</title>
+
+</head>
+
+<body>
+
+    <div class="outer">
+
+        <h2>회원가입</h2>
+
+        <form action="/memberInsert" method="post" id="enrollForm" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="memEmail">* 이메일 :</label>
+                <input type="email" class="form-control" id="memEmail" name="memEmail" placeholder="이메일을 입력하세요" required>
+            </div>
+
+            <div class="form-group">
+                <label for="memPwd">* 비밀번호 :</label>
+                <input type="password" class="form-control" id="memPwd" name="memPwd" maxlength="15" placeholder="비밀번호를 입력하세요" required>
+            </div>
+
+            <div class="form-group">
+                <label for="checkPwd">* 비밀번호 확인 :</label>
+                <input type="password" class="form-control" id="checkPwd" placeholder="비밀번호를 다시 입력하세요" required>
+            </div>
+
+            <div class="form-group">
+                <label for="memName">* 이름 :</label>
+                <input type="text" class="form-control" id="memName" name="memName" maxlength="6" placeholder="이름을 입력하세요" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">전화번호 :</label>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="전화번호를 입력하세요 (숫자만)" pattern="[0-9]*">
+            </div>
+
+            <div class="form-group">
+                <label for="address1">주소 :</label>
+                <input type="text"  id="zipcode" name="postNo" onclick="openZipSearch();" placeholder="우편번호">
+                <button id="zipcodeBtn" type="button" class="btn btn-outline-primary" onclick="selectZipcode();" style="width: 35%;">우편번호 검색</button><br>
+                <input type="text"  id="address1" name="address1" placeholder="기본주소">
+                <input type="text"  id="address2" name="address2" placeholder="상세주소"  style="width:250px;">
+            </div>
+
+            <button type="submit" id="enrollBtn" class="btn btn-primary">회원가입</button>
+            <button type="reset" class="btn btn-danger">초기화</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            var memPwd = document.getElementById('memPwd').value;
+            var checkPwd = document.getElementById('checkPwd').value;
+            if (memPwd !== checkPwd) {
+                alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+                return false;
+            }
+            return true;
+        }
+
+        function selectZipcode() {
+
+            new daum.Postcode({
+
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                var extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('zipcode').value = data.zonecode;
+                document.getElementById("address1").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("address2").focus();
+            }
+            }).open({
+                popupTitle: '우편번호 검색'
+                // ,theme: themeObj
+                });
+        }
+
+    </script>
+
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</body>
+
+</html>

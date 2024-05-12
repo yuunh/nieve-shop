@@ -1,10 +1,14 @@
 package com.nieve.ctrl;
 
+import com.nieve.model.Member;
+import com.nieve.model.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import com.nieve.service.MemberService;
+
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -29,6 +33,12 @@ public class HomeController {
         return "login";
     }
 
+    @GetMapping("/memberEnrollForm.html")
+    public String enrollForm() {
+
+        return "memberEnrollForm";
+    }
+
     @GetMapping("/tracking.html")
     public String tracking() {
 
@@ -41,5 +51,13 @@ public class HomeController {
         return "checkout";
     }
 
+    @PostMapping("memberInsert")
+    @ResponseBody
+    public String memberInsert(@ModelAttribute Member member) {
+
+        memberService.memberInsert(member);
+
+        return "ok";
+    }
 
 }

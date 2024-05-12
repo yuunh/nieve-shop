@@ -1,6 +1,8 @@
 package com.nieve.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
@@ -11,6 +13,7 @@ import lombok.*;
 public class MemberEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int memNo;
     private String memName;
     private String memEmail;

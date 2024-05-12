@@ -13,7 +13,7 @@ public class Review {
 
     private String reviewTitle;
     private String reviewContent;
-    private int reviewStar;
-    private int fileNo;
+    private Integer reviewStar;
+    private Integer fileNo;
     private String fileName;
 }
