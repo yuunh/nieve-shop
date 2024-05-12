@@ -51,4 +51,36 @@ public class MemberService {
 
         return members;
     }
+
+    public void updateMember(Member member) {
+
+        MemberEntity me = memberRepository.findById(member.getMemNo()).orElseThrow();
+
+        me.setMemEmail(member.getMemEmail());
+        me.setMemPwd(member.getMemPwd());
+        me.setMemName(member.getMemName());
+        me.setPhone(member.getPhone());
+        me.setPostNo(member.getPostNo());
+        me.setAddress1(member.getAddress1());
+        me.setAddress2(member.getAddress2());
+
+        memberRepository.save(me);
+    }
+
+    public Member getMember(int memNo) {
+
+        MemberEntity me = memberRepository.findById(memNo).orElseThrow();
+
+        Member m = Member.builder()
+                .memNo(me.getMemNo())
+                .memEmail(me.getMemEmail())
+                .memPwd(me.getMemPwd())
+                .memName(me.getMemName())
+                .phone(me.getPhone())
+                .postNo(me.getPostNo())
+                .address1(me.getAddress1())
+                .address2(me.getAddress2())
+                .build();
+        return m;
+    }
 }

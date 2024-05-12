@@ -51,7 +51,7 @@
                             </div>
                             <div class="hearer_icon d-flex">
                                 <div sec:authorize="isAuthenticated()">
-                                    <a th:value="${user_name}">myPage</a>
+                                    <a href="myPage.html" th:value="${user_name}">myPage</a>
                                 </div>
                                 <div sec:authorize="isAnonymous()">
                                     <a href="/login.html">로그인</a>

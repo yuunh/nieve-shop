@@ -12,7 +12,8 @@ import java.util.List;
 
 @Controller
 public class HomeController {
-    @Autowired MemberService memberService;
+    @Autowired
+    MemberService memberService;
 
     @GetMapping("/")
     public String root(Model m) {
@@ -60,4 +61,21 @@ public class HomeController {
         return "ok";
     }
 
+    @GetMapping("/myPage.html")
+    public String myPage(@RequestParam(value = "memNo", required = false) int memNo, Model m) {
+
+        Member member = memberService.getMember(memNo);
+
+        m.addAttribute("member", member);
+
+        return "myPage";
+    }
+
+    @PostMapping("memberUpdate")
+    public String memberUpdate(@ModelAttribute Member member) {
+
+        memberService.updateMember(member);
+
+        return "redirect:/myPage.html?&memNo=" + member.getMemNo();
+    }
 }

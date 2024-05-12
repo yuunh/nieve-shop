@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Member {
 
-    private int memNo;
+    private Integer memNo;
     private String memName;
     private String memEmail;
     private String memPwd;
