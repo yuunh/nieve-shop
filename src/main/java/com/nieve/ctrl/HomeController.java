@@ -1,14 +1,17 @@
 package com.nieve.ctrl;
 
+import com.nieve.config.CustomUser;
 import com.nieve.model.Member;
-import com.nieve.model.Review;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.nieve.service.MemberService;
 
-import java.util.List;
 
 @Controller
 public class HomeController {
@@ -62,12 +65,19 @@ public class HomeController {
     }
 
     @GetMapping("/myPage.html")
-    public String myPage(@RequestParam(value = "memNo", required = false) int memNo, Model m) {
-
-        Member member = memberService.getMember(memNo);
-
-        m.addAttribute("member", member);
-
+    public String myPage(Model m) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            System.out.println("auth " + authentication);
+            User user = (User) authentication.getPrincipal();
+            String memNo = user.getUsername();
+            Member member = memberService.getMember(Integer.parseInt(memNo));
+            m.addAttribute("member", member);
+        }
+//        if (memNo != null) {
+//            Member member = memberService.getMember(memNo);
+//            m.addAttribute("member", member);
+//        }
         return "myPage";
     }
 

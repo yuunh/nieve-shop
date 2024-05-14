@@ -77,7 +77,7 @@ public class ShopController {
         review.setFileNo(fileNo);
         reviewService.addReview(review);
 
-        return "OK";
+        return "redirect:/single-product.html";
     }
-
+    
 }

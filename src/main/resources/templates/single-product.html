@@ -352,7 +352,7 @@
          processData : false,
          contentType : false,
          success : function(result) {
-           alert('리뷰가 성공적으로 등록되었습니다.');
+           if(confirm("댓글이 등록되었습니다"))  location.reload();
          }
        })
      }

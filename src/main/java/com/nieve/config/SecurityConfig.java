@@ -5,11 +5,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -38,16 +46,34 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails user = User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("1234")
-                .roles("USER")
-                .build();
-        UserDetails admin = User.withDefaultPasswordEncoder()
-                .username("admin")
-                .password("1234")
-                .roles("ADMIN", "USER")
-                .build();
+        List<GrantedAuthority> auths = new ArrayList<>();
+        auths.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+        List<GrantedAuthority> authsAdmin = new ArrayList<>();
+        authsAdmin.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        authsAdmin.add(new SimpleGrantedAuthority("ROLE_USER"));
+        User user = new CustomUser("1", "admin01", 1, auths);
+        User admin = new CustomUser("2", "1234", 2, authsAdmin);
+
         return new InMemoryUserDetailsManager(user, admin);
     }
+
+    @Bean
+    public PasswordEncoder encrypt(){
+        return new PasswordEncoder(){
+
+            @Override
+            public String encode(CharSequence rawPassword) {
+                return rawPassword.toString();
+            }
+
+            @Override
+            public boolean matches(CharSequence rawPassword, String encodedPassword) {
+                return true;
+            }
+        };
+//        return new BCryptPasswordEncoder();
+    }
 }
+
+

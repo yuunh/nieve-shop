@@ -10,6 +10,8 @@ import lombok.*;
 @Data
 @Getter
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class MemberEntity {
 
     @Id
