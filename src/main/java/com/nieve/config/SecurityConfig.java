@@ -52,7 +52,7 @@ public class SecurityConfig {
         List<GrantedAuthority> authsAdmin = new ArrayList<>();
         authsAdmin.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         authsAdmin.add(new SimpleGrantedAuthority("ROLE_USER"));
-        User user = new CustomUser("1", "admin01", 1, auths);
+        User user = new CustomUser("1", "1234", 1, auths);
         User admin = new CustomUser("2", "1234", 2, authsAdmin);
 
         return new InMemoryUserDetailsManager(user, admin);

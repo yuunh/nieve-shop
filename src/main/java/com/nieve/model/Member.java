@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Date;
+
 @Getter
 @Setter
 @Builder
@@ -19,6 +21,9 @@ public class Member {
     private String address1;
     private String address2;
     private String postNo;
+    private String adCheck;
+    private String memState;
+    private Date enrollDate;
 
 
 }

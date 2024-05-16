@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
+import java.sql.Date;
+
 @Entity(name = "member")
 @Data
 @Getter
@@ -24,4 +26,7 @@ public class MemberEntity {
     private String address1;
     private String address2;
     private String postNo;
+    private String adCheck;
+    private String memState;
+    private Date enrollDate;
 }

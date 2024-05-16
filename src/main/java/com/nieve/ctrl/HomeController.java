@@ -86,6 +86,6 @@ public class HomeController {
 
         memberService.updateMember(member);
 
-        return "redirect:/myPage.html?&memNo=" + member.getMemNo();
+        return "redirect:/myPage";
     }
 }
