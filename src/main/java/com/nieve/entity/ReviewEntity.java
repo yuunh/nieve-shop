@@ -22,7 +22,7 @@ public class ReviewEntity {
     private int reviewStar;
     private String reviewState;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="fileNo", unique = false)
     private FileEntity file;
 

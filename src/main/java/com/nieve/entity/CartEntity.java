@@ -1,11 +1,8 @@
 package com.nieve.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
-import org.springframework.data.annotation.Id;
 
 @Entity(name = "cart")
 @Data
@@ -13,18 +10,19 @@ import org.springframework.data.annotation.Id;
 public class CartEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cartNo;
     private int cartStock;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "fileNo", unique = false)
     private FileEntity file;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "memNo", unique = false)
     private MemberEntity member;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "productNo", unique = false)
     private ProductEntity product;
 

@@ -21,38 +21,28 @@ public class ProductService {
     @Autowired private ReviewRepository reviewRepository;
 
     public List<Product> getProductList() {
-
         List<ProductEntity> productList = productRepository.findAll();
         List<Product> products = new ArrayList<>();
         for (ProductEntity pe : productList) {
-            FileEntity fe = pe.getFile();
-            Product p = Product.builder()
-                    .productName(pe.getProductName())
-                    .productPrice(pe.getProductPrice())
-                    .fileName(fe.getChangeName())
-                    .build();
-            products.add(p);
+            products.add(pe.toModel());
         }
 
         return products;
     }
 
-
     public List<Product> getCartList() {
-
         List<ProductEntity> cartList = productRepository.findAll();
 
         List<Product> carts = new ArrayList<>();
         for (ProductEntity pe : cartList) {
-            FileEntity fe = pe.getFile();
-            Product p = Product.builder()
-                    .productName(pe.getProductName())
-                    .productPrice(pe.getProductPrice())
-                    .fileName(fe.getChangeName())
-                    .build();
-            carts.add(p);
+            carts.add(pe.toModel());
         }
 
         return carts;
+    }
+
+    public Product getProduct(Integer productNo) {
+        ProductEntity productEntity = productRepository.findById(productNo).orElseThrow();
+        return productEntity.toModel();
     }
 }

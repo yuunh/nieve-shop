@@ -34,10 +34,11 @@ public class SecurityConfig {
                     .requestMatchers("/js/**").permitAll()
                     .requestMatchers("/webfonts/**").permitAll()
                     .requestMatchers("/").permitAll()
+                    .requestMatchers("/**").permitAll()
                     .requestMatchers("/login").permitAll()
                     .requestMatchers("/cart").hasRole("USER")
                     .requestMatchers("/writeReview").hasRole("USER")
-                    .requestMatchers("/**").hasRole("USER")
+                    .requestMatchers("/myPage.html").hasRole("USER")
                 )
                 .formLogin(form -> form.defaultSuccessUrl("/"));
         http.csrf(AbstractHttpConfigurer::disable);

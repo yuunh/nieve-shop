@@ -1,9 +1,7 @@
 package com.nieve.ctrl;
 
-import com.nieve.model.Member;
 import com.nieve.model.Product;
 import com.nieve.model.Review;
-import com.nieve.service.MemberService;
 import com.nieve.service.ProductService;
 import com.nieve.service.ReviewService;
 import com.nieve.service.StorageService;
@@ -18,7 +16,7 @@ import java.util.List;
 
 
 @Controller
-public class ShopController {
+public class ProductController {
 
     @Autowired
     private ProductService productService;
@@ -38,24 +36,16 @@ public class ShopController {
     }
 
     @GetMapping("/single-product.html")
-    public String review(Model m) {
+    public String productDetail(@RequestParam("productNo") Integer productNo, Model m) {
+        // get product from productservice
 
+        Product product = productService.getProduct(productNo);
+        m.addAttribute("product", product);
 
         List<Review> reviewList = reviewService.getReviewList();
-
         m.addAttribute("reviewList", reviewList);
 
         return "single-product";
-    }
-
-    @GetMapping("/cart.html")
-    public String productCart(Model m) {
-
-        List<Product> cartList = productService.getCartList();
-
-        m.addAttribute("cartList", cartList);
-
-        return "cart";
     }
 
     @GetMapping("/confirmation.html")

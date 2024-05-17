@@ -166,10 +166,10 @@
                         <th:block th:each="product : ${productList}">
                             <div class="col-lg-4 col-sm-6">
                                 <div class="single_product_item">
-                                    <img th:src="${'/files/' + product.fileName}">
+                                    <a th:href="'/single-product.html?productNo=' + ${product.productNo}"><img th:src="${'/files/' + product.fileName}"></a>
                                     <div class="single_product_text">
                                         <h4 th:text="${product.productName}"></h4>
-                                        <h3 th:text="'$' + ${product.productPrice}"></h3>
+                                        <h3 th:text="${product.productPrice} + '원'"></h3>
                                         <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
                                     </div>
                                 </div>
