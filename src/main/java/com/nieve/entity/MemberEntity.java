@@ -18,7 +18,7 @@ public class MemberEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int memNo;
+    private Integer memNo;
     private String memName;
     private String memEmail;
     private String memPwd;

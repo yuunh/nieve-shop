@@ -9,13 +9,14 @@ import lombok.Setter;
 @Setter
 @Builder
 @AllArgsConstructor
-public class Product {
+public class Cart {
 
+    private int cartNo;
+    private int memNo;
     private int productNo;
     private String productName;
-    private double productPrice;
-    private int productStock;
-    private String productState;
+    private int productPrice;
+    private int cartStock;
     private int fileNo;
     private String fileName;
     private int categoryNo;

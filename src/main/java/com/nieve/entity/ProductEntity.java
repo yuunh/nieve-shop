@@ -1,9 +1,6 @@
 package com.nieve.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 
@@ -13,11 +10,18 @@ import lombok.Getter;
 public class ProductEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productNo;
     private String productName;
-    private double productPrice;
+    private int productPrice;
+    private int productStock;
+    private String productState;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="fileNo", unique = false)
     private FileEntity file;
+
+    @ManyToOne
+    @JoinColumn(name="categoryNo", unique = false)
+    private CategoryEntity category;
 }

@@ -12,7 +12,7 @@ DELETE FROM product where 1 = 1;
 DELETE FROM category;
 DELETE FROM attachment;
 
-INSERT INTO `member` (`mem_no`, `mem_email`, `mem_name`, `mem_pwd`, `phone`, `address1`, `address2`, `post_no`, `ad_check`, enroll_date) VALUES (1, 'admin01@nieve.com', '관리자', 'admin01', '01012345678', '서울시', '구로구', '01478', 'Y', '2022-11-17');
+INSERT INTO `member` (`mem_no`, `mem_email`, `mem_name`, `mem_pwd`, `phone`, `address1`, `address2`, `post_no`, `ad_check`, enroll_date) VALUES (1, 'admin01@nieve.com', '관리자', '$2a$10$h5jhNcoD.dvixLPlhhPOGuOnWQI/gbcOeVPtYx7B1lAlrlMEnrFLC', '01012345678', '서울시', '구로구', '01478', 'Y', '2022-11-17');
 INSERT INTO `category` (`category_no`, `category_name`) VALUES (1, 'Top');
 INSERT INTO `category` (`category_no`, `category_name`) VALUES (2, '아우터');
 INSERT INTO `attachment` (`file_no`, `upload_date`, `change_name`, `file_path`, `origin_name`, `status`) VALUES (1, '2024-05-07 13:42:41.000000', 'product_1.png', 'upload-dir/product_1.png', 'product_1.png', 'Y');

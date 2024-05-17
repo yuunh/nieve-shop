@@ -69,9 +69,8 @@ public class HomeController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             System.out.println("auth " + authentication);
-            User user = (User) authentication.getPrincipal();
-            String memNo = user.getUsername();
-            Member member = memberService.getMember(Integer.parseInt(memNo));
+            CustomUser user = (CustomUser) authentication.getPrincipal();
+            Member member = memberService.getMember(user.getMemNo());
             m.addAttribute("member", member);
         }
 //        if (memNo != null) {
@@ -86,6 +85,6 @@ public class HomeController {
 
         memberService.updateMember(member);
 
-        return "redirect:/myPage";
+        return "redirect:/myPage.html";
     }
 }

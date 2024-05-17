@@ -30,7 +30,6 @@
 </head>
 
 <body>
-  <span sec:authentication="principal.username" />
   <!--::header part start::-->
   <div th:replace="fragments/header :: 'header'"></div>
   <!-- Header part end-->
@@ -44,18 +43,18 @@
             <div class="order_box">
               <h3>My Page</h3>
               <form class="row contact_form" action="/memberUpdate" method="post" id="enrollForm">
-                <input type="hidden" th:value="${member.memNo}">
+                <input type="hidden" name="memNo" th:value="${member.memNo}">
                 <div class="col-md-12 form-group">
                   <label for="memEmail">* 이메일</label>
                   <input type="email" class="form-control" id="memEmail" name="memEmail" th:value="${member.memEmail}" readonly>
                 </div>
                 <div class="col-md-12 form-group">
                   <label for="memPwd">* 비밀번호</label>
-                  <input type="password" class="form-control" id="memPwd" name="memPwd" th:value="${member.memPwd}" maxlength="15">
+                  <input type="password" class="form-control" id="memPwd" name="memPwd" maxlength="15">
                 </div>
                 <div class="col-md-12 form-group">
                   <label for="checkPwd">* 비밀번호 확인</label>
-                  <input type="password" class="form-control" id="checkPwd" name="checkPwd" th:value="${member.memPwd}">
+                  <input type="password" class="form-control" id="checkPwd" name="checkPwd">
                 </div>
                 <div class="col-md-12 form-group">
                   <label for="memName">* 이름</label>
