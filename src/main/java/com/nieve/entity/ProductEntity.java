@@ -14,6 +14,7 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int productNo;
     private String productName;
+    private String productDesc;
     private int productPrice;
     private int productStock;
     private String productState;
@@ -31,7 +32,9 @@ public class ProductEntity {
         Product p = Product.builder()
                 .productNo(this.getProductNo())
                 .productName(this.getProductName())
+                .productDesc(this.getProductDesc())
                 .productPrice(this.getProductPrice())
+                .categoryName(this.getProductName())
                 .build();
         if(fe != null){
             p.setFileName(fe.getChangeName());

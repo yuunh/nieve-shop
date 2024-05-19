@@ -2,6 +2,8 @@ package com.nieve.ctrl;
 
 import com.nieve.config.CustomUser;
 import com.nieve.model.Member;
+import com.nieve.model.Product;
+import com.nieve.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -12,22 +14,38 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.nieve.service.MemberService;
 
+import java.util.List;
+
 
 @Controller
 public class HomeController {
+
     @Autowired
     MemberService memberService;
 
+    @Autowired
+    ProductService productService;
+
     @GetMapping("/")
     public String root(Model m) {
+
         m.addAttribute("user_name", "이윤화");
         memberService.saveMember("hello@test.com");
+
+        List<Product> productList = productService.getProductList();
+        m.addAttribute("productList", productList);
+
         return "index";
     }
 
     @GetMapping("/index.html")
     public String index(Model m) {
+
         m.addAttribute("user_name", "이윤화");
+
+        List<Product> productList = productService.getProductList();
+        m.addAttribute("productList", productList);
+
         return "index";
     }
 

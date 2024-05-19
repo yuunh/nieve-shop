@@ -75,17 +75,14 @@
                 <a href="#"> <span>Availibility</span> : In Stock</a>
               </li>
             </ul>
-            <p>
-              First replenish living. Creepeth image image. Creeping can't, won't called.
-              Two fruitful let days signs sea together all land fly subdue
-            </p>
+            <p th:text="${product.productDesc}"></p>
             <div class="card_area d-flex justify-content-between align-items-center">
               <div class="product_count">
                 <span class="inumber-decrement"> <i class="ti-minus"></i></span>
                 <input class="input-number" type="text" value="1" min="0" max="10">
                 <span class="number-increment"> <i class="ti-plus"></i></span>
               </div>
-              <button onclick="javascript:addToCart()" class="btn_3">장바구니 추가</button>
+              <button onclick="addToCart()" class="btn_3">장바구니 추가</button>
             </div>
           </div>
         </div>
@@ -333,6 +330,13 @@
   </section>
 
    <script>
+     function addToCart() {
+
+     }
+
+   </script>
+
+   <script>
      function submitReview() {
        var formData = new FormData();
        formData.append("reviewStar", $("#reviewStar").val());
@@ -350,16 +354,6 @@
            if(confirm("댓글이 등록되었습니다"))  location.reload();
          }
        })
-     }
-   </script>
-
-   <script>
-     function addToCart(){
-       $.ajax({
-         method: "post",
-         url: "/cartAdd",
-         params: {"test" : "abc"}
-       });
      }
    </script>
 
