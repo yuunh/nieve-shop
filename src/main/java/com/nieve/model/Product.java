@@ -17,8 +17,12 @@ public class Product {
     private double productPrice;
     private int productStock;
     private String productState;
-    private int fileNo;
-    private String fileName;
+    private int fileNo1;
+    private String fileName1;
+    private int fileNo2;
+    private String fileName2;
+    private int fileNo3;
+    private String fileName3;
     private int categoryNo;
     private String categoryName;
 }

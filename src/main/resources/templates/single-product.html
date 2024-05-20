@@ -51,14 +51,14 @@
         <div class="col-lg-7 col-xl-7">
           <div class="product_slider_img">
             <div id="vertical">
-              <div th:data-thumb="${'/files/' + product.fileName}">
-                <img th:src="${'/files/' + product.fileName}" />
+              <div th:data-thumb="${'/files/' + product.fileName1}">
+                <img th:src="${'/files/' + product.fileName1}" />
               </div>
-              <div data-thumb="img/product/single-product/product_1.png">
-                <img src="img/product/single-product/product_1.png" />
+              <div th:data-thumb="${'/files/' + product.fileName2}">
+                <img th:src="${'/files/' + product.fileName2}" />
               </div>
-              <div data-thumb="img/product/single-product/product_1.png">
-                <img src="img/product/single-product/product_1.png" />
+              <div th:data-thumb="${'/files/' + product.fileName3}">
+                <img th:src="${'/files/' + product.fileName3}" />
               </div>
             </div>
           </div>
