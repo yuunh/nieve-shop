@@ -28,14 +28,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String root(Model m) {
-
-        m.addAttribute("user_name", "이윤화");
-        memberService.saveMember("hello@test.com");
-
-        List<Product> productList = productService.getProductList();
-        m.addAttribute("productList", productList);
-
-        return "index";
+        return index(m);
     }
 
     @GetMapping("/index.html")
@@ -44,7 +37,15 @@ public class HomeController {
         m.addAttribute("user_name", "이윤화");
 
         List<Product> productList = productService.getProductList();
+        List<Product> category1 = productService.getProductListByCategoryNo(1, 1);
+        List<Product> category2 = productService.getProductListByCategoryNo(2, 1);
+        List<Product> category3 = productService.getProductListByCategoryNo(3, 1);
+        List<Product> category4 = productService.getProductListByCategoryNo(4, 1);
         m.addAttribute("productList", productList);
+        m.addAttribute("category1", category1);
+        m.addAttribute("category2", category2);
+        m.addAttribute("category3", category3);
+        m.addAttribute("category4", category4);
 
         return "index";
     }

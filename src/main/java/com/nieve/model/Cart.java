@@ -11,14 +11,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Cart {
 
-    private int cartNo;
-    private int memNo;
-    private int productNo;
-    private String productName;
-    private int productPrice;
-    private int cartStock;
-    private int fileNo;
-    private String fileName;
-    private int categoryNo;
-    private String categoryName;
+    private Integer cartNo;
+    private Integer memNo;
+    private Integer productNo;
+    private Integer cartStock;
+
 }

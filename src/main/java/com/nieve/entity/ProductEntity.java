@@ -2,21 +2,23 @@ package com.nieve.entity;
 
 import com.nieve.model.Product;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
+import lombok.*;
 
 @Entity(name = "product")
 @Data
 @Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int productNo;
+    private Integer productNo;
     private String productName;
     private String productDesc;
-    private int productPrice;
-    private int productStock;
+    private Integer productPrice;
+    private Integer productStock;
     private String productState;
 
     @ManyToOne

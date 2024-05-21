@@ -1,22 +1,20 @@
 package com.nieve.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
+import lombok.*;
 
 @Entity(name = "cart")
 @Data
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CartEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cartNo;
     private int cartStock;
-
-    @ManyToOne
-    @JoinColumn(name = "fileNo", unique = false)
-    private FileEntity file;
 
     @ManyToOne
     @JoinColumn(name = "memNo", unique = false)
