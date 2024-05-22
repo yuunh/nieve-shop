@@ -7,7 +7,7 @@ public class TestEncrypt {
     @Test
     public void encodeTest(){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String result = encoder.encode("admin01");
+        String result = encoder.encode("1234");
         System.out.println("["+result+"]");
 
         System.out.println("is match : " + encoder.matches("test", result));

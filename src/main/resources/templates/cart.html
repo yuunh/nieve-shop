@@ -61,37 +61,37 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">Product</th>
-                <th scope="col">Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Total</th>
+                <th scope="col">상품</th>
+                <th scope="col">가격</th>
+                <th scope="col">수량</th>
+                <th scope="col">합계</th>
               </tr>
             </thead>
             <tbody>
-              <th:block th:each="product : ${cartList}">
+              <th:block th:each="cart : ${cartList}">
                 <tr>
                   <td>
                     <div class="media">
                       <div class="d-flex">
-                        <img th:src="${'/files/' + product.fileName1}">
+                        <img th:src="${'/files/' + cart.fileName1}">
                       </div>
                       <div class="media-body">
-                        <p th:text="${product.productName}"></p>
+                        <p th:text="${cart.productName}"></p>
                       </div>
                     </div>
                   </td>
                   <td>
-                    <h5 th:text="'$' + ${product.productPrice}"></h5>
+                    <h5 th:text="'$' + ${cart.productPrice}"></h5>
                   </td>
                   <td>
                     <div class="product_count">
                       <span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
-                      <input class="input-number" type="text" value="1" min="0" max="10">
+                      <input class="input-number" th:value="${cart.cartStock}">
                       <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
                     </div>
                   </td>
                   <td>
-                    <h5 th:text="'$' + ${product.productPrice}"></h5>
+                    <h5 th:text="'$' + ${cart.productPrice}"></h5>
                   </td>
                 </tr>
               </th:block>

@@ -1,5 +1,6 @@
 package com.nieve.ctrl;
 
+import com.nieve.model.Category;
 import com.nieve.model.Product;
 import com.nieve.model.Review;
 import com.nieve.service.ProductService;
@@ -29,8 +30,10 @@ public class ProductController {
     public String category(Model m) {
 
         List<Product> productList = productService.getProductList();
-
         m.addAttribute("productList", productList);
+
+        List<Category> categoryList = productService.getCategoryList();
+        m.addAttribute("categoryList", categoryList);
 
         return "category";
     }

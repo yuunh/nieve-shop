@@ -14,7 +14,7 @@ public class CartEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int cartNo;
-    private int cartStock;
+    private Integer cartStock;
 
     @ManyToOne
     @JoinColumn(name = "memNo", unique = false)

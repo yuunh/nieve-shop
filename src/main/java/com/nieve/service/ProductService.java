@@ -1,10 +1,7 @@
 package com.nieve.service;
 
 import com.nieve.entity.*;
-import com.nieve.model.Cart;
-import com.nieve.model.File;
-import com.nieve.model.Product;
-import com.nieve.model.Review;
+import com.nieve.model.*;
 import com.nieve.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -32,6 +29,20 @@ public class ProductService {
         }
 
         return products;
+    }
+
+    public List<Category> getCategoryList() {
+
+        List<CategoryEntity> catgoryList = categoryRepository.findAll();
+        List<Category> categories = new ArrayList<>();
+        for (CategoryEntity ce : catgoryList) {
+            Category c = Category.builder()
+                    .categoryNo(ce.getCategoryNo())
+                    .categoryName(ce.getCategoryName())
+                    .build();
+            categories.add(c);
+        }
+        return categories;
     }
 
     public List<Product> getCartList() {

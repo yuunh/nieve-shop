@@ -25,4 +25,6 @@ public class Product {
     private String fileName3;
     private int categoryNo;
     private String categoryName;
+    private int cartStock;
+
 }

@@ -20,6 +20,7 @@ public class ProductEntity {
     private Integer productPrice;
     private Integer productStock;
     private String productState;
+    private Integer cartStock;
 
     @ManyToOne
     @JoinColumn(name="fileNo1", unique = false)

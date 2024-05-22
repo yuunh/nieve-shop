@@ -65,30 +65,12 @@
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
-                                    <li>
-                                        <a href="#">아우터</a>
-                                        <span>(150)</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">상의</a>
-                                        <span>(250)</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">하의</a>
-                                        <span>(250)</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">팬츠</a>
-                                        <span>(150)</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">스커트</a>
-                                        <span>(50)</span>
-                                    </li>
-                                    <li>
-                                        <a href="#">원피스</a>
-                                        <span>(50)</span>
-                                    </li>
+                                    <th:block th:each="category : ${categoryList}">
+                                        <li>
+                                            <a href="#" th:text="${category.categoryName}"></a>
+                                            <span>(150)</span>
+                                        </li>
+                                    </th:block>
                                 </ul>
                             </div>
                         </aside>

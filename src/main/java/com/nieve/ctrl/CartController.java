@@ -2,6 +2,7 @@ package com.nieve.ctrl;
 
 import com.nieve.config.CustomUser;
 import com.nieve.model.Cart;
+import com.nieve.model.Category;
 import com.nieve.model.Member;
 import com.nieve.model.Product;
 import com.nieve.service.MemberService;
