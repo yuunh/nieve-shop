@@ -5,6 +5,7 @@ import com.nieve.model.*;
 import com.nieve.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,26 @@ public class ProductService {
 
     @Autowired private CategoryRepository categoryRepository;
 
-    public List<Product> getProductList() {
-        List<ProductEntity> productList = productRepository.findAll();
+    public List<Product> getProductListByFilterWithSort(Integer categoryNo, String sortField, String sortDirection) {
+        String sortProperties = sortField != null ? sortField : "productNo";
+        Sort sort = "asc".equals(sortDirection) ?
+                Sort.by(sortProperties).ascending()
+                : Sort.by(sortDirection).descending();
+
+        if(categoryNo != null){
+            CategoryEntity ce = categoryRepository.findById(categoryNo).orElseThrow();
+            Example<ProductEntity> ex = Example.of(ProductEntity.builder().category(ce).build());
+            return getProductList(ex, sort);
+        }else
+            return getProductList(Example.of(ProductEntity.builder().build()), sort);
+    }
+
+    public List<Product> getProductList(){
+        return getProductList(Example.of(ProductEntity.builder().build()), Sort.by("productNo"));
+    }
+
+    public List<Product> getProductList(Example<ProductEntity> example, Sort sort) {
+        List<ProductEntity> productList = productRepository.findBy(example, q -> q.sortBy(sort).all()).stream().toList();
         List<Product> products = new ArrayList<>();
         for (ProductEntity pe : productList) {
             products.add(pe.toModel());
@@ -45,12 +64,20 @@ public class ProductService {
         return categories;
     }
 
-    public List<Product> getCartList() {
-        List<ProductEntity> cartList = productRepository.findAll();
+    public List<Cart> getCartList() {
+        List<CartEntity> cartList = cartRepository.findAll();
 
-        List<Product> carts = new ArrayList<>();
-        for (ProductEntity pe : cartList) {
-            carts.add(pe.toModel());
+        List<Cart> carts = new ArrayList<>();
+        for (CartEntity ce : cartList) {
+            ProductEntity pe = ce.getProduct();
+            Product p = pe.toModel();
+            Cart c = Cart.builder()
+                    .cartNo(ce.getCartNo())
+                    .cartStock(ce.getCartStock())
+                    .productNo(pe.getProductNo())
+                    .product(p)
+                    .build();
+            carts.add(c);
         }
 
         return carts;

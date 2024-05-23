@@ -1,5 +1,6 @@
 package com.nieve.ctrl;
 
+import com.nieve.entity.ProductEntity;
 import com.nieve.model.Category;
 import com.nieve.model.Product;
 import com.nieve.model.Review;
@@ -27,13 +28,18 @@ public class ProductController {
     private ReviewService reviewService;
 
     @GetMapping("/category.html")
-    public String category(Model m) {
+    public String category(@RequestParam(value = "categoryNo", required = false) Integer categoryNo,
+                           @RequestParam(value = "order", required = false) String order,
+                           @RequestParam(value="dir", required = false) String dir,
+                           Model m) {
 
-        List<Product> productList = productService.getProductList();
+        List<Product> productList = productService.getProductListByFilterWithSort(categoryNo, order, dir);
         m.addAttribute("productList", productList);
 
         List<Category> categoryList = productService.getCategoryList();
         m.addAttribute("categoryList", categoryList);
+
+
 
         return "category";
     }
@@ -45,7 +51,7 @@ public class ProductController {
         Product product = productService.getProduct(productNo);
         m.addAttribute("product", product);
 
-        List<Review> reviewList = reviewService.getReviewList();
+        List<Review> reviewList = reviewService.getReviewList(productNo);
         m.addAttribute("reviewList", reviewList);
 
         return "single-product";

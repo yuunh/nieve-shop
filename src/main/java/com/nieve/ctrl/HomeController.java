@@ -8,13 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.nieve.service.MemberService;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 
 
 @Controller
@@ -37,17 +39,28 @@ public class HomeController {
         m.addAttribute("user_name", "이윤화");
 
         List<Product> productList = productService.getProductList();
-        List<Product> category1 = productService.getProductListByCategoryNo(1, 1);
-        List<Product> category2 = productService.getProductListByCategoryNo(2, 1);
-        List<Product> category3 = productService.getProductListByCategoryNo(3, 1);
-        List<Product> category4 = productService.getProductListByCategoryNo(4, 1);
+        List<Product> categories = new ArrayList<>();
+        pickRandom(productService.getProductListByCategoryNo(1, 100)).ifPresent(categories::add);
+        pickRandom(productService.getProductListByCategoryNo(2, 100)).ifPresent(categories::add);
+        pickRandom(productService.getProductListByCategoryNo(3, 100)).ifPresent(categories::add);
+        pickRandom(productService.getProductListByCategoryNo(4, 100)).ifPresent(categories::add);
         m.addAttribute("productList", productList);
-        m.addAttribute("category1", category1);
-        m.addAttribute("category2", category2);
-        m.addAttribute("category3", category3);
-        m.addAttribute("category4", category4);
+        m.addAttribute("categories", categories);
 
         return "index";
+    }
+
+    private Optional<Product> pickRandom(List<Product> cate) {
+        if(cate != null && !cate.isEmpty()){
+            int size = cate.size();
+
+            Random r = new Random();
+            int pick = r.nextInt(size);
+            return Optional.of(cate.get(pick));
+        }else{
+            return Optional.empty();
+        }
+
     }
 
     @GetMapping("/login.html")

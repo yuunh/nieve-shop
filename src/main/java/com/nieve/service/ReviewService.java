@@ -16,9 +16,9 @@ public class ReviewService {
     @Autowired private ReviewRepository reviewRepository;
     @Autowired private FileRepository fileRepository;
 
-    public List<Review> getReviewList() {
+    public List<Review> getReviewList(Integer productNo) {
 
-        List<ReviewEntity> reviewList = reviewRepository.findAll();
+        List<ReviewEntity> reviewList = reviewRepository.findByProductNo(productNo);
         List<Review> reviews = new ArrayList<>();
         for (ReviewEntity re : reviewList) {
             FileEntity fe = re.getFile();

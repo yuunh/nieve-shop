@@ -67,7 +67,7 @@
                                 <ul class="list">
                                     <th:block th:each="category : ${categoryList}">
                                         <li>
-                                            <a href="#" th:text="${category.categoryName}"></a>
+                                            <a th:href="${'/category.html?categoryNo=' + category.categoryNo}" th:text="${category.categoryName}"></a>
                                             <span>(150)</span>
                                         </li>
                                     </th:block>
@@ -132,7 +132,7 @@
                                 </div>
                                 <div class="single_product_menu d-flex">
                                     <select>
-                                        <option data-display="Select">상품정렬</option>
+                                        <option data-display="Select" onchange="">상품정렬</option>
                                         <option value="1">신상품순</option>
                                         <option value="2">판매인기순</option>
                                         <option value="3">리뷰많은순</option>

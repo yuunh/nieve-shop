@@ -33,4 +33,5 @@ public class ReviewEntity {
     @ManyToOne
     @JoinColumn(name="productNo", unique = false)
     private ProductEntity product;
+
 }

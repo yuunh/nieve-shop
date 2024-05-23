@@ -108,25 +108,14 @@
                 </div>
             </div>
             <div class="row align-items-center justify-content-between">
-                <th:block th:each="product : ${category1}">
-                    <div class="col-lg-7 col-sm-6">
+                <th:block th:each="product, idx : ${categories}">
+
+                    <div th:class="${((idx.index % 4) == 0 || (idx.index % 4) == 3) ? 'col-lg-7 col-sm-7' : 'col-lg-5 col-sm-5'}">
                         <div class="single_feature_post_text">
                             <p th:text="${product.categoryName}"></p>
                             <h3 th:text="${product.productName}"></h3>
                             <a th:href="'/single-product.html?productNo=' + ${product.productNo}" class="feature_btn">보러가기 <i class="fas fa-play"></i></a>
-                            <img th:src="${'/files/' + product.fileName1}">
-                        </div>
-                    </div>
-                </th:block>
-
-
-                <th:block th:each="product : ${category2}">
-                    <div class="col-lg-7 col-sm-6">
-                        <div class="single_feature_post_text">
-                            <p th:text="${product.categoryName}"></p>
-                            <h3 th:text="${product.productName}"></h3>
-                            <a th:href="'/single-product.html?productNo=' + ${product.productNo}" class="feature_btn">보러가기 <i class="fas fa-play"></i></a>
-                            <img th:src="${'/files/' + product.fileName1}">
+                            <img th:src="${'/files/' + product.fileName1}" style="max-width: 400px;">
                         </div>
                     </div>
                 </th:block>

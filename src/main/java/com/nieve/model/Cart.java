@@ -15,5 +15,6 @@ public class Cart {
     private Integer memNo;
     private Integer productNo;
     private Integer cartStock;
+    private Product product;
 
 }
