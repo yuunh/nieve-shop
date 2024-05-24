@@ -106,6 +106,7 @@ input:focus {
 /* line 64, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_common.scss */
 .padding_top {
   padding-top: 140px;
+  background-color: #ECECEC;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -2161,7 +2162,7 @@ ul {
   max-width: 1140px;
   z-index: 999;
   text-align: center;
-  background: #ff3368;
+  background: #797979;
 }
 
 /* line 60, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_menu.scss */
@@ -2248,7 +2249,7 @@ ul {
 .main_menu .cart i:after {
   position: absolute;
   border-radius: 50%;
-  background-color: #f13d80;
+  background-color: #797979;
   width: 14px;
   height: 14px;
   right: -8px;
@@ -2257,7 +2258,7 @@ ul {
   text-align: center;
   line-height: 15px;
   font-size: 10px;
-  color: #fff;
+  color: #edeff2;
 }
 
 /* line 151, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_menu.scss */
@@ -2431,7 +2432,7 @@ ul {
 .banner_part .single_banner_slider .banner_text {
   display: table;
   width: 100%;
-  height: 820px;
+  height: 520px;
 }
 
 /* line 11, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_banner.scss */
@@ -2645,6 +2646,7 @@ ul {
   margin-bottom: 30px;
   position: relative;
   height: 400px;
+  background-color: #ECECEC;
 }
 
 @media (max-width: 576px) {
@@ -2695,7 +2697,7 @@ ul {
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 2px;
-  color: #ff3368;
+  color: #000;
   position: absolute;
   left: 50px;
   bottom: 60px;
@@ -2710,7 +2712,7 @@ ul {
 /* line 61, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_feature_part.scss */
 .feature_part .single_feature_post_text .feature_btn i {
   font-weight: 12px;
-  color: #ff3368;
+  color: #000;
   margin-left: 6px;
 }
 

@@ -79,6 +79,9 @@ INSERT INTO `attachment` (`file_no`, `upload_date`, `change_name`, `file_path`, 
 INSERT INTO `attachment` (`file_no`, `upload_date`, `change_name`, `file_path`, `origin_name`, `status`) VALUES (46, '2024-05-07 13:42:41.000000', 'hj_je1_pt_d-1.jpg', 'upload-dir/hj_je1_pt_d-1.jpg', 'hj_je1_pt_d-1.jpg', 'Y');
 INSERT INTO `attachment` (`file_no`, `upload_date`, `change_name`, `file_path`, `origin_name`, `status`) VALUES (47, '2024-05-07 13:42:41.000000', 'hj_je1_pt_d-2.jpg', 'upload-dir/hj_je1_pt_d-2.jpg', 'hj_je1_pt_d-2.jpg', 'Y');
 INSERT INTO `attachment` (`file_no`, `upload_date`, `change_name`, `file_path`, `origin_name`, `status`) VALUES (48, '2024-05-07 13:42:41.000000', 'hj_je1_pt_d-3.jpg', 'upload-dir/hj_je1_pt_d-3.jpg', 'hj_je1_pt_d-3.jpg', 'Y');
+INSERT INTO `attachment` (`file_no`, `upload_date`, `change_name`, `file_path`, `origin_name`, `status`) VALUES (49, '2024-05-07 13:42:41.000000', 'ya_je8sk_dd_1.jpg', 'upload-dir/ya_je8sk_dd_1.jpg', 'ya_je8sk_dd_1.jpg', 'Y');
+INSERT INTO `attachment` (`file_no`, `upload_date`, `change_name`, `file_path`, `origin_name`, `status`) VALUES (50, '2024-05-07 13:42:41.000000', 'ya_je8sk_dd_2.jpg', 'upload-dir/ya_je8sk_dd_2.jpg', 'ya_je8sk_dd_2.jpg', 'Y');
+INSERT INTO `attachment` (`file_no`, `upload_date`, `change_name`, `file_path`, `origin_name`, `status`) VALUES (51, '2024-05-07 13:42:41.000000', 'ya_je8sk_dd_3.jpg', 'upload-dir/ya_je8sk_dd_3.jpg', 'ya_je8sk_dd_3.jpg', 'Y');
 
 
 INSERT INTO `product` (`product_no`, `product_name`, `product_price`, `product_stock`, `category_no`, `file_no1`, `file_no2`, `file_no3`, `product_state`) VALUES (1, '멜롯 투웨이 후드집업', 29000, 21, 1, 1, 2, 3, 'Y');
@@ -97,6 +100,7 @@ INSERT INTO `product` (`product_no`, `product_name`, `product_price`, `product_s
 INSERT INTO `product` (`product_no`, `product_name`, `product_price`, `product_stock`, `category_no`, `file_no1`, `file_no2`, `file_no3`, `product_state`) VALUES (14, '도미닉 와이드 롱 슬랙스', 29000, 44, 3, 40, 41, 42, 'Y');
 INSERT INTO `product` (`product_no`, `product_name`, `product_price`, `product_stock`, `category_no`, `file_no1`, `file_no2`, `file_no3`, `product_state`) VALUES (15, '리처 와이드 코튼팬츠', 34000, 17, 3, 43, 44, 45, 'Y');
 INSERT INTO `product` (`product_no`, `product_name`, `product_price`, `product_stock`, `category_no`, `file_no1`, `file_no2`, `file_no3`, `product_state`) VALUES (16, '스터프 나일론 숏팬츠', 25000, 20, 3, 46, 47, 48, 'Y');
+INSERT INTO `product` (`product_no`, `product_name`, `product_price`, `product_stock`, `category_no`, `file_no1`, `file_no2`, `file_no3`, `product_state`) VALUES (17, '도미닉 플리츠 스커트', 25000, 26, 4, 49, 50, 51, 'Y');
 
 
 
@@ -147,7 +151,10 @@ INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review
 INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content, review_date, review_star, review_state) VALUES (45, '3', '1', '15', '너무 맘에듭니다', '핏도 딱 원하는 핏이고 길이감도 허리도 좋네요! 아주더운 여름 제외하곤 앞으로 쭉 입을수있을것같습니다', '2024-04-07', 5, 'Y');
 INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content, review_date, review_star, review_state) VALUES (46, '3', '2', '15', '와.. 진짜 여러분... 이 바지 꼭 사셔야합니다', '데일리용으로 입기에 너무 좋을 것 같아서 구매했는데 역시나 만족이네요.', '2024-04-04', 5, 'Y');
 INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content, review_date, review_star, review_state) VALUES (47, '3', '3', '15', '와이드 면바지 처음 입어보는데 너무 만족', '색감 진짜 예뻐요... 흰바지는 처음 사보는데 너무 예쁩니다', '2024-03-31', 5, 'Y');
-INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content, review_date, review_star, review_state) VALUES (48, '3', '4', '16', '진짜 시웡하고 예뻐용!!!', '너~~~무 짧아보이지 않고 편해 보여서 좋아요! 동네 돌아다닐 때 자주 입을 것 같아요 ㅎㅎ', '2024-03-31', 5, 'Y');
+INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content, review_date, review_star, review_state) VALUES (48, '3', '4', '16', '진짜 시웡하고 예뻐용!!!', '너~~~무 짧아보이지 않고 편해 보여서 좋아요! 동네 돌아다닐 때 자주 입을 것 같아요 ㅎㅎ', '2024-04-24', 5, 'Y');
+INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content, review_date, review_star, review_state) VALUES (49, '4', '5', '17', '전체적으로 색도 퀄리티도 만족해요!!', '너무 예쁘고 매치도 쉽고 해서 자주 입을 것 같아요 재질도 좋고 핏도 좋아요', '2024-05-13', 5, 'Y');
+INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review_content, review_date, review_star, review_state) VALUES (50, '4', '6', '17', '고민하지말고 사세요.', '사이즈 아주아주아주 마음에 들어요. 길이감도 아주 마음에 들어요. 색도 사진이랑 같아요. 많이 입을 것 같아요', '2024-04-30', 5, 'Y');
+
 
 --INSERT INTO `product` (`product_no`, `product_name`, `product_desc`, `product_price`, `product_stock`, `category_no`, `file_no1` , `file_no2`, `file_no3`) VALUES (1, 'Colorful Stylish Shirt', '한국에서 만든 고가의 코튼 원단!  레이스 스컷이랍니다~\n 허리 부분 밴딩으로 사이즈 55-66까지 좋으시구요!\n 반팔 티셧에도 블라에도 니트도 다 사랑스럽게 입기에 너무 좋으세요\n 고가의 레이스로 그 결 짜임이 너무 이쁜 아이였어요~\n 오래도록 함께 하기에 너무 좋은 스컷이 되실것 같아요~\n 매년마다 꺼내서 입으시는 러블리 무드의 스컷으로 자주 자주 입혀지실 아이랍니다~\n 사심을 담뿍이 담아 강추 강추 드리며 굿 초이스 되세요^^', 15000, 26, 1, 1, 2, 3);
 --INSERT INTO `product` (`product_no`, `product_name`, `product_desc`, `product_price`, `product_stock`, `category_no`, `file_no1` , `file_no2`, `file_no3`) VALUES (2, 'Quartz Belt Watch', '한국에서 만든 고가의 코튼 원단!  레이스 스컷이랍니다~\n 허리 부분 밴딩으로 사이즈 55-66까지 좋으시구요!\n 반팔 티셧에도 블라에도 니트도 다 사랑스럽게 입기에 너무 좋으세요\n 고가의 레이스로 그 결 짜임이 너무 이쁜 아이였어요~\n 오래도록 함께 하기에 너무 좋은 스컷이 되실것 같아요~\n 매년마다 꺼내서 입으시는 러블리 무드의 스컷으로 자주 자주 입혀지실 아이랍니다~\n 사심을 담뿍이 담아 강추 강추 드리며 굿 초이스 되세요^^', 26000, 18, 2, 3, 4, 5);
