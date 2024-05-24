@@ -38,16 +38,17 @@ public class ProductEntity {
 
     public Product toModel(){
 
+        CategoryEntity ce = this.getCategory();
         FileEntity fe1 = this.getFile1();
         FileEntity fe2 = this.getFile2();
         FileEntity fe3 = this.getFile3();
-
         Product p = Product.builder()
                 .productNo(this.getProductNo())
                 .productName(this.getProductName())
-                .productDesc(this.getProductDesc())
                 .productPrice(this.getProductPrice())
-                .categoryName(this.getProductName())
+                .productStock(this.getProductStock())
+                .categoryNo(ce.getCategoryNo())
+                .categoryName(ce.getCategoryName())
                 .fileNo1(fe1.getFileNo())
                 .fileNo2(fe2.getFileNo())
                 .fileNo3(fe3.getFileNo())
