@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>aranaz</title>
+  <title>주문서</title>
   <link rel="icon" href="img/favicon.png">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -42,7 +42,7 @@
         <div class="col-lg-8">
           <div class="breadcrumb_iner">
             <div class="breadcrumb_iner_item">
-              <h2>Producta Checkout</h2>
+              <h2>주문서</h2>
               <p>Home <span>-</span> Shop Single</p>
             </div>
           </div>
@@ -55,161 +55,123 @@
   <!--================Checkout Area =================-->
   <section class="checkout_area padding_top">
     <div class="container">
-      <div class="returning_customer">
-        <div class="check_title">
-          <h2>
-            Returning Customer?
-            <a href="#">Click here to login</a>
-          </h2>
-        </div>
-        <p>
-          If you have shopped with us before, please enter your details in the
-          boxes below. If you are a new customer, please proceed to the
-          Billing & Shipping section.
-        </p>
-        <form class="row contact_form" action="#" method="post" novalidate="novalidate">
-          <div class="col-md-6 form-group p_star">
-            <input type="text" class="form-control" id="name" name="name" value=" " />
-            <span class="placeholder" data-placeholder="Username or Email"></span>
-          </div>
-          <div class="col-md-6 form-group p_star">
-            <input type="password" class="form-control" id="password" name="password" value="" />
-            <span class="placeholder" data-placeholder="Password"></span>
-          </div>
-          <div class="col-md-12 form-group">
-            <button type="submit" value="submit" class="btn_3">
-              log in
-            </button>
-            <div class="creat_account">
-              <input type="checkbox" id="f-option" name="selector" />
-              <label for="f-option">Remember me</label>
-            </div>
-            <a class="lost_pass" href="#">Lost your password?</a>
-          </div>
-        </form>
-      </div>
-      <div class="cupon_area">
-        <div class="check_title">
-          <h2>
-            Have a coupon?
-            <a href="#">Click here to enter your code</a>
-          </h2>
-        </div>
-        <input type="text" placeholder="Enter coupon code" />
-        <a class="tp_btn" href="#">Apply Coupon</a>
-      </div>
       <div class="billing_details">
         <div class="row">
           <div class="col-lg-8">
-            <h3>Billing Details</h3>
+            <h3>주문자 정보</h3>
             <form class="row contact_form" action="#" method="post" novalidate="novalidate">
-              <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="first" name="name" />
-                <span class="placeholder" data-placeholder="First name"></span>
+              <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" name="name" />
+                <span class="placeholder" data-placeholder="주문하신 분"></span>
               </div>
-              <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="last" name="name" />
-                <span class="placeholder" data-placeholder="Last name"></span>
+              <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" name="number" />
+                <span class="placeholder" data-placeholder="연락처"></span>
               </div>
-              <div class="col-md-12 form-group">
-                <input type="text" class="form-control" id="company" name="company" placeholder="Company name" />
+              <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" name="email" />
+                <span class="placeholder" data-placeholder="이메일"></span>
               </div>
-              <div class="col-md-6 form-group p_star">
+
+              <h3>배송 정보</h3>
+              <div class="col-md-12 form-group p_star">
+                <input type="text" class="form-control" name="name" />
+                <span class="placeholder" data-placeholder="받으실 분"></span>
+              </div>
+              <div class="col-md-12 form-group p_star">
                 <input type="text" class="form-control" id="number" name="number" />
-                <span class="placeholder" data-placeholder="Phone number"></span>
+                <span class="placeholder" data-placeholder="연락처"></span>
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="email" name="compemailany" />
-                <span class="placeholder" data-placeholder="Email Address"></span>
+                <input type="text" class="form-control"/>
+                <span class="placeholder" data-placeholder="우편번호"></span>
+                <button id="zipcodeBtn" type="button" class="btn btn-outline-primary" onclick="selectZipcode();" style="user-select: auto !important;">우편번호 검색</button>
+              </div>
+              <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control"/>
+                <span class="placeholder" data-placeholder="주소"></span>
+              </div>
+              <div class="col-md-6 form-group p_star">
+                <input type="text" class="form-control"/>
+                <span class="placeholder" data-placeholder="상세주소"></span>
               </div>
               <div class="col-md-12 form-group p_star">
-                <select class="country_select">
-                  <option value="1">Country</option>
-                  <option value="2">Country</option>
-                  <option value="4">Country</option>
-                </select>
+                <input type="text" class="form-control"/>
+                <span class="placeholder" data-placeholder="배송메세지(100자내외)"></span>
               </div>
-              <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="add1" name="add1" />
-                <span class="placeholder" data-placeholder="Address line 01"></span>
+
+              <div class="container mt-5">
+                <table class="table table-bordered">
+                  <thead class="thead-light">
+                  <tr>
+                    <th>상품명</th>
+                    <th>수량</th>
+                    <th>상품금액</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>
+                      <div class="media">
+                        <img src="https://cdn3-aka.makeshop.co.kr/shopimages/09women/0360080067193.gif" class="mr-3" alt="상품 이미지" style="width: 50px;">
+                        <div class="media-body">
+                          <h5 class="mt-0">쿨링드 썸머 와이드 팬츠</h5>
+                        </div>
+                      </div>
+                    </td>
+                    <td>1</td>
+                    <td>10,000원</td>
+                  </tr>
+                  </tbody>
+                </table>
+                <table class="table">
+                  <tbody>
+                  <tr class="total">
+                    <td colspan="3" class="text-right"><strong>총 상품 금액:</strong></td>
+                    <td>59,800원</td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" class="text-right"><strong>배송비:</strong></td>
+                    <td>2,500원</td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" class="text-right"><strong>결제 예정 금액:</strong></td>
+                    <td>62,300원</td>
+                  </tr>
+                  </tbody>
+                </table>
               </div>
-              <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="add2" name="add2" />
-                <span class="placeholder" data-placeholder="Address line 02"></span>
-              </div>
-              <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" id="city" name="city" />
-                <span class="placeholder" data-placeholder="Town/City"></span>
-              </div>
-              <div class="col-md-12 form-group p_star">
-                <select class="country_select">
-                  <option value="1">District</option>
-                  <option value="2">District</option>
-                  <option value="4">District</option>
-                </select>
-              </div>
-              <div class="col-md-12 form-group">
-                <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP" />
-              </div>
-              <div class="col-md-12 form-group">
-                <div class="creat_account">
-                  <input type="checkbox" id="f-option2" name="selector" />
-                  <label for="f-option2">Create an account?</label>
-                </div>
-              </div>
-              <div class="col-md-12 form-group">
-                <div class="creat_account">
-                  <h3>Shipping Details</h3>
-                  <input type="checkbox" id="f-option3" name="selector" />
-                  <label for="f-option3">Ship to a different address?</label>
-                </div>
-                <textarea class="form-control" name="message" id="message" rows="1"
-                  placeholder="Order Notes"></textarea>
-              </div>
+
             </form>
           </div>
+
           <div class="col-lg-4">
             <div class="order_box">
-              <h2>Your Order</h2>
+              <h2>최종 결제 금액</h2>
               <ul class="list">
                 <li>
-                  <a href="#">Product
-                    <span>Total</span>
+                  <a href="#">상품금액
+                    <span>62000원</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">Fresh Blackberry
-                    <span class="middle">x 02</span>
-                    <span class="last">$720.00</span>
+                  <a href="#">배송비
+                    <span>2000원</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">Fresh Tomatoes
-                    <span class="middle">x 02</span>
-                    <span class="last">$720.00</span>
+                  <a href="#">할인금액
+                    <span>0원</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">Fresh Brocoli
-                    <span class="middle">x 02</span>
-                    <span class="last">$720.00</span>
-                  </a>
-                </li>
-              </ul>
-              <ul class="list list_2">
-                <li>
-                  <a href="#">Subtotal
-                    <span>$2160.00</span>
+                  <a href="#">추가금액
+                    <span>0원</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#">Shipping
-                    <span>Flat rate: $50.00</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Total
-                    <span>$2210.00</span>
+                  <a href="#">최종 결제금액
+                    <span>63000원</span>
                   </a>
                 </li>
               </ul>
@@ -241,7 +203,7 @@
                 <label for="f-option4">I’ve read and accept the </label>
                 <a href="#">terms & conditions*</a>
               </div>
-              <a class="btn_3" href="#">Proceed to Paypal</a>
+              <a class="btn_3" href="#">결제하기</a>
             </div>
           </div>
         </div>

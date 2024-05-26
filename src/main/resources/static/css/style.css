@@ -4082,7 +4082,7 @@ ul {
 
 /* line 818, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
 .product_description_area .tab-content .total_rate .box_total {
-  background: #ecfdff;
+  background: #ECECEC;
   text-align: center;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -4091,7 +4091,7 @@ ul {
 
 /* line 824, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
 .product_description_area .tab-content .total_rate .box_total h4 {
-  color: #ff3368;
+  color: #2a2a2a;
   font-size: 48px;
   font-weight: bold;
 }
@@ -4182,7 +4182,7 @@ ul {
 
 /* line 922, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
 .review_item p {
-  color: #797979;
+  color: #000000;
 }
 
 /* line 926, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
@@ -4997,7 +4997,7 @@ ul {
 /* line 1613, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
 .order_box .list li a {
   font-size: 14px;
-  color: #797979;
+  color: #000000;
   font-weight: normal;
   border-bottom: 1px solid #eeeeee;
   display: block;

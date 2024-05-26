@@ -26,7 +26,7 @@ public class ProductService {
         String sortProperties = sortField != null ? sortField : "productNo";
         Sort sort = "asc".equals(sortDirection) ?
                 Sort.by(sortProperties).ascending()
-                : Sort.by(sortDirection).descending();
+                : Sort.by(sortProperties).descending();
 
         if(categoryNo != null){
             CategoryEntity ce = categoryRepository.findById(categoryNo).orElseThrow();
