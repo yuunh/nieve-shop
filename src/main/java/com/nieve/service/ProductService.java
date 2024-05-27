@@ -4,9 +4,7 @@ import com.nieve.entity.*;
 import com.nieve.model.*;
 import com.nieve.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.FluentQuery;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,7 +17,6 @@ public class ProductService {
     @Autowired private ReviewRepository reviewRepository;
     @Autowired private MemberRepository memberRepository;
     @Autowired private CartRepository cartRepository;
-
     @Autowired private CategoryRepository categoryRepository;
 
     public List<Product> getProductListByFilterWithSort(Integer categoryNo, String sortField, String sortDirection) {
@@ -36,6 +33,19 @@ public class ProductService {
             return getProductList(Example.of(ProductEntity.builder().build()), sort);
     }
 
+    public Page<Product> getPagedProductListInCategory(Integer categoryNo, int page, String criteria, String dir){
+        Pageable p = PageRequest.of(page, 6, "asc".equals(dir) ? Sort.Direction.ASC : Sort.Direction.DESC, criteria);
+        CategoryEntity ce = categoryRepository.findById(categoryNo).orElseThrow();
+        Page<ProductEntity> pes = productRepository.findAllByCategory(ce, p);
+        return pes.map(ProductEntity::toModel);
+    }
+
+    public Page<Product> getPagedProductList(int page, String criteria, String dir){
+        Pageable p = PageRequest.of(page, 6, "asc".equals(dir) ? Sort.Direction.ASC : Sort.Direction.DESC, criteria);
+        Page<ProductEntity> pes = productRepository.findAll(p);
+        return pes.map(ProductEntity::toModel);
+    }
+
     public List<Product> getProductList(){
         return getProductList(Example.of(ProductEntity.builder().build()), Sort.by("productNo"));
     }
@@ -50,14 +60,15 @@ public class ProductService {
         return products;
     }
 
-    public List<Category> getCategoryList() {
+    public List<Category> getCategoryListWithProductCount() {
+        List<CategoryCountEntity> categoryCounts = categoryRepository.getCategoryCount();
 
-        List<CategoryEntity> catgoryList = categoryRepository.findAll();
         List<Category> categories = new ArrayList<>();
-        for (CategoryEntity ce : catgoryList) {
+        for (CategoryCountEntity ce : categoryCounts) {
             Category c = Category.builder()
                     .categoryNo(ce.getCategoryNo())
                     .categoryName(ce.getCategoryName())
+                    .categoryCount(ce.getCategoryCount())
                     .build();
             categories.add(c);
         }

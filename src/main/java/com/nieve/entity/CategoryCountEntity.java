@@ -1,8 +1,8 @@
 package com.nieve.entity;
 
-public class CategoryCountEntity {
+public interface CategoryCountEntity {
 
-    private Integer categoryNo;
-    private Integer categoryCount;
-    private String categoryName;
+    Integer getCategoryNo();
+    Integer getCategoryCount();
+    String getCategoryName();
 }

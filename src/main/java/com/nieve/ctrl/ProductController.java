@@ -1,6 +1,5 @@
 package com.nieve.ctrl;
 
-import com.nieve.entity.ProductEntity;
 import com.nieve.model.Category;
 import com.nieve.model.Product;
 import com.nieve.model.Review;
@@ -8,6 +7,7 @@ import com.nieve.service.ProductService;
 import com.nieve.service.ReviewService;
 import com.nieve.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,20 +27,42 @@ public class ProductController {
     @Autowired
     private ReviewService reviewService;
 
+    @GetMapping("/product_paging.html")
+    @ResponseBody
+    public Page<Product> category(@RequestParam(value = "categoryNo", required = false) Integer categoryNo,
+                                  @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
+                                  @RequestParam(value = "criteria", required = false, defaultValue = "productNo") String order,
+                                  @RequestParam(value="dir", required = false, defaultValue = "desc") String dir) {
+
+        if(categoryNo == null){
+            return productService.getPagedProductList(page, order, dir);
+        }else {
+            return productService.getPagedProductListInCategory(categoryNo, page, order, dir);
+        }
+    }
+
+
     @GetMapping("/category.html")
     public String category(@RequestParam(value = "categoryNo", required = false) Integer categoryNo,
-                           @RequestParam(value = "order", required = false) String order,
-                           @RequestParam(value="dir", required = false) String dir,
+                           @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
+                           @RequestParam(value = "criteria", required = false, defaultValue = "productNo") String order,
+                           @RequestParam(value="dir", required = false, defaultValue = "desc") String dir,
                            Model m) {
 
-        List<Product> productList = productService.getProductListByFilterWithSort(categoryNo, order, dir);
+        Page<Product> productList;
+        if(categoryNo == null){
+            productList = productService.getPagedProductList(page, order, dir);
+        }else {
+            productList =  productService.getPagedProductListInCategory(categoryNo, page, order, dir);
+        }
         m.addAttribute("productList", productList);
 
-        List<Category> categoryList = productService.getCategoryList();
+        List<Category> categoryList = productService.getCategoryListWithProductCount();
         m.addAttribute("categoryList", categoryList);
 
-
-
+        m.addAttribute("categoryNo", categoryNo);
+        m.addAttribute("criteria", order);
+        m.addAttribute("dir", dir);
         return "category";
     }
 
