@@ -75,41 +75,12 @@ public class ProductService {
         return categories;
     }
 
-    public List<Cart> getCartList() {
-        List<CartEntity> cartList = cartRepository.findAll();
-
-        List<Cart> carts = new ArrayList<>();
-        for (CartEntity ce : cartList) {
-            ProductEntity pe = ce.getProduct();
-            Product p = pe.toModel();
-            Cart c = Cart.builder()
-                    .cartNo(ce.getCartNo())
-                    .cartStock(ce.getCartStock())
-                    .productNo(pe.getProductNo())
-                    .product(p)
-                    .build();
-            carts.add(c);
-        }
-
-        return carts;
-    }
-
     public Product getProduct(Integer productNo) {
         ProductEntity productEntity = productRepository.findById(productNo).orElseThrow();
         return productEntity.toModel();
     }
 
-    public void addCart(Cart cart) {
 
-        ProductEntity pe = productRepository.findById(cart.getProductNo()).orElseThrow();
-        MemberEntity me = memberRepository.findById(cart.getMemNo()).orElseThrow();
-        CartEntity ce = CartEntity.builder()
-                .cartStock(cart.getCartStock())
-                .product(pe)
-                .member(me)
-                .build();
-        cartRepository.save(ce);
-    }
 
     public List<Product> getProductListByCategoryNo(int categoryNo, int limit) {
         CategoryEntity category = categoryRepository.findById(categoryNo).orElse(CategoryEntity.builder().categoryNo(-1).build());

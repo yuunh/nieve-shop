@@ -158,3 +158,6 @@ INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review
 
 --INSERT INTO `product` (`product_no`, `product_name`, `product_desc`, `product_price`, `product_stock`, `category_no`, `file_no1` , `file_no2`, `file_no3`) VALUES (1, 'Colorful Stylish Shirt', '한국에서 만든 고가의 코튼 원단!  레이스 스컷이랍니다~\n 허리 부분 밴딩으로 사이즈 55-66까지 좋으시구요!\n 반팔 티셧에도 블라에도 니트도 다 사랑스럽게 입기에 너무 좋으세요\n 고가의 레이스로 그 결 짜임이 너무 이쁜 아이였어요~\n 오래도록 함께 하기에 너무 좋은 스컷이 되실것 같아요~\n 매년마다 꺼내서 입으시는 러블리 무드의 스컷으로 자주 자주 입혀지실 아이랍니다~\n 사심을 담뿍이 담아 강추 강추 드리며 굿 초이스 되세요^^', 15000, 26, 1, 1, 2, 3);
 --INSERT INTO `product` (`product_no`, `product_name`, `product_desc`, `product_price`, `product_stock`, `category_no`, `file_no1` , `file_no2`, `file_no3`) VALUES (2, 'Quartz Belt Watch', '한국에서 만든 고가의 코튼 원단!  레이스 스컷이랍니다~\n 허리 부분 밴딩으로 사이즈 55-66까지 좋으시구요!\n 반팔 티셧에도 블라에도 니트도 다 사랑스럽게 입기에 너무 좋으세요\n 고가의 레이스로 그 결 짜임이 너무 이쁜 아이였어요~\n 오래도록 함께 하기에 너무 좋은 스컷이 되실것 같아요~\n 매년마다 꺼내서 입으시는 러블리 무드의 스컷으로 자주 자주 입혀지실 아이랍니다~\n 사심을 담뿍이 담아 강추 강추 드리며 굿 초이스 되세요^^', 26000, 18, 2, 3, 4, 5);
+INSERT INTO `cart` (`cart_no`, `cart_stock`, `mem_no`, `product_no`) VALUES (1, 1, 1, 7);
+INSERT INTO `cart` (`cart_no`, `cart_stock`, `mem_no`, `product_no`) VALUES (2, 2, 1, 5);
+INSERT INTO `cart` (`cart_no`, `cart_stock`, `mem_no`, `product_no`) VALUES (3, 1, 2, 6);

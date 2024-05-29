@@ -1,12 +1,15 @@
 package com.nieve.ctrl;
 
 import com.nieve.config.CustomUser;
+import com.nieve.model.Cart;
 import com.nieve.model.Member;
 import com.nieve.model.Product;
+import com.nieve.service.CartService;
 import com.nieve.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +27,8 @@ public class HomeController {
 
     @Autowired
     MemberService memberService;
-
+    @Autowired
+    CartService cartService;
     @Autowired
     ProductService productService;
 
@@ -82,8 +86,9 @@ public class HomeController {
     }
 
     @GetMapping("/checkout.html")
-    public String checkout() {
+    public String checkout(@AuthenticationPrincipal CustomUser user) {
 
+        List<Cart> cartList = cartService.getCartOfMember(user.getMemNo());
         return "checkout";
     }
 

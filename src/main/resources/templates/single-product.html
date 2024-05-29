@@ -91,6 +91,9 @@
                 <input class="input-number" type="text" value="1" min="0" max="10" id="cartStock">
                 <span class="number-increment"> <i class="ti-plus"></i></span>
               </div>
+            </div>
+            <div class="card_area d-flex justify-content-between align-items-center">
+              <div><button class="btn_3">구매하기</button></div>
               <div sec:authorize="isAuthenticated()">
                 <button onclick="javascript:addToCart()" class="btn_3">장바구니 추가</button>
               </div>

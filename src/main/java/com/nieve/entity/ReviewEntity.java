@@ -15,7 +15,7 @@ public class ReviewEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int reviewNo;
+    private Integer reviewNo;
     private String reviewTitle;
     private String reviewContent;
     private Date reviewDate;

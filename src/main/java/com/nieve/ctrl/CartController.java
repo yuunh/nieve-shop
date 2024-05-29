@@ -5,11 +5,13 @@ import com.nieve.model.Cart;
 import com.nieve.model.Category;
 import com.nieve.model.Member;
 import com.nieve.model.Product;
+import com.nieve.service.CartService;
 import com.nieve.service.MemberService;
 import com.nieve.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,14 +23,18 @@ import java.util.List;
 public class CartController {
 
     @Autowired
+    private CartService cartService;
+    @Autowired
     private ProductService productService;
     @Autowired
     private MemberService memberService;
 
     @GetMapping("/cart.html")
-    public String productCart(Model m) {
+    public String productCart(@AuthenticationPrincipal CustomUser user, Model m) {
+        System.out.println("Customer Info : ");
+        System.out.println(user);
 
-        List<Cart> cartList = productService.getCartList();
+        List<Cart> cartList = cartService.getCartOfMember(user.getMemNo());
 
         m.addAttribute("cartList", cartList);
 
@@ -47,7 +53,7 @@ public class CartController {
             cart.setMemNo(member.getMemNo());
         }
 
-        productService.addCart(cart);
+        cartService.addCart(cart);
 
         return "{ 'result' : true }";
     }

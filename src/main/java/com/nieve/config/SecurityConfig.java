@@ -37,6 +37,7 @@ public class SecurityConfig {
                     .requestMatchers("/**").permitAll()
                     .requestMatchers("/login").permitAll()
                     .requestMatchers("/cart").hasRole("USER")
+                    .requestMatchers("/cart.html").hasRole("USER")
                     .requestMatchers("/writeReview").hasRole("USER")
                     .requestMatchers("/myPage.html").hasRole("USER")
                 )
@@ -44,20 +45,6 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
-//
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        List<GrantedAuthority> auths = new ArrayList<>();
-//        auths.add(new SimpleGrantedAuthority("ROLE_USER"));
-//
-//        List<GrantedAuthority> authsAdmin = new ArrayList<>();
-//        authsAdmin.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-//        authsAdmin.add(new SimpleGrantedAuthority("ROLE_USER"));
-//        User user = new CustomUser("1", "1234", 1, auths);
-//        User admin = new CustomUser("2", "1234", 2, authsAdmin);
-//
-//        return new InMemoryUserDetailsManager(user, admin);
-//    }
 
     @Bean
     public PasswordEncoder encrypt(){

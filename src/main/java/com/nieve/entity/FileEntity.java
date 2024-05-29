@@ -18,7 +18,7 @@ public class FileEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int fileNo;
+    private Integer fileNo;
     private String originName;
     private String changeName;
     private String filePath;
