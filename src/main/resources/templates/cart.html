@@ -67,11 +67,12 @@
                 <th scope="col">가격</th>
                 <th scope="col">수량</th>
                 <th scope="col">합계</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               <th:block th:each="cart : ${cartList}">
-                <tr>
+                <tr th:id="'cart-item-[[' + ${cart.cartNo} + ']]'">
                   <td>
                     <div class="media">
                       <div class="d-flex">
@@ -94,6 +95,9 @@
                   </td>
                   <td>
                     <h5 th:text="'$' + ${cart.product.productPrice * cart.cartStock}"></h5>
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-outline-secondary" th:onclick="'deleteItem(' + ${cart.cartNo} + ')'">삭제</button>
                   </td>
                 </tr>
               </th:block>
@@ -164,6 +168,7 @@
 
       }
 
+      // 카카오 결제
       function confirmBuy(){
 
         const names = $("p[name=productName]")
@@ -190,6 +195,43 @@
           payMethod: "EASY_PAY",
         }).then(r  => console.log(r));
       }
+
+      // 장바구니 상품 삭제
+<!--      const deleteById  = (cartNo) => {-->
+<!--        const reqUrl = "/cart/"+cartNo-->
+<!--        $.ajax({-->
+<!--            type : 'delete',-->
+<!--            url : reqUrl,-->
+
+<!--            success : function(){-->
+<!--               alert('삭제되었습니다.');-->
+<!--               location.reload();-->
+<!--            }, error(){-->
+<!--                alert('ajax 실패')-->
+<!--            }-->
+<!--        })-->
+<!--      }-->
+      function deleteItem(cartNo) {
+          fetch(`/cart/delete-item/${cartNo}`, {
+              method: 'DELETE',
+              headers: {
+                  'Content-Type': 'application/json'
+              }
+          })
+          .then(response => {
+              if (response.ok) {
+                  document.getElementById(`cart-item-${cartNo}`).remove();
+                  alert("항목이 성공적으로 삭제되었습니다!");
+              } else {
+                  alert("항목 삭제에 실패했습니다.");
+              }
+          })
+          .catch(error => {
+              console.error('오류:', error);
+              alert("항목을 삭제하는 동안 오류가 발생했습니다.");
+          });
+      }
+
     </script>
 
 </body>

@@ -49,4 +49,9 @@ public class CartService {
                 .build();
         cartRepository.save(ce);
     }
+
+
+    public void deleteById(Integer cartNo) {
+        cartRepository.deleteById(cartNo);
+    }
 }
