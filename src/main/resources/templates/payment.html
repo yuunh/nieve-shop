@@ -60,48 +60,47 @@
       <div class="billing_details">
         <div class="row">
           <div class="col-lg-8">
-            <h3>주문자 정보</h3>
             <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+              <input type="hidden" name="memNo" th:value="${member.memNo}">
+              <h3>주문자 정보</h3>
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" name="name" />
-                <span class="placeholder" data-placeholder="주문하신 분"></span>
+                <label for="memName">주문하신 분</label>
+                <input type="text" class="form-control" id="memName" name="memName" th:value="${member.memName}"/>
               </div>
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" name="number" />
-                <span class="placeholder" data-placeholder="연락처"></span>
+                <label for="phone">전화번호</label>
+                <input type="tel" class="form-control" id="phone" name="phone" th:value="${member.phone}" />
               </div>
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control" name="email" />
-                <span class="placeholder" data-placeholder="이메일"></span>
+                <label for="memEmail">이메일</label>
+                <input type="email" class="form-control" id="memEmail" name="memEmail" th:value="${member.memEmail}" />
               </div>
 
               <h3>배송 정보</h3>
               <div class="col-md-12 form-group p_star">
+                <label for="memName">받으실 분</label>
                 <input type="text" class="form-control" name="name" />
-                <span class="placeholder" data-placeholder="받으실 분"></span>
               </div>
               <div class="col-md-12 form-group p_star">
+                <label for="phone">전화번호</label>
                 <input type="text" class="form-control" id="number" name="number" />
-                <span class="placeholder" data-placeholder="연락처"></span>
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control"/>
-                <span class="placeholder" data-placeholder="우편번호"></span>
+                <label for="address1">주소</label>
+                <input type="text" class="form-control" id="zipcode" name="postNo" onclick="openZipSearch();" th:value="${member.postNo}"/>
               </div>
               <div class="col-md-6 form-group p_star">
                 <button id="zipcodeBtn" type="button" class="btn btn-outline-primary" onclick="selectZipcode();" style="user-select: auto !important;">우편번호 검색</button>
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control"/>
-                <span class="placeholder" data-placeholder="주소"></span>
+                <input type="text" class="form-control" id="address1" name="address1" th:value="${member.address1}"/>
               </div>
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control"/>
-                <span class="placeholder" data-placeholder="상세주소"></span>
+                <input type="text" class="form-control" id="address2" name="address2" th:value="${member.address2}"/>
               </div>
               <div class="col-md-12 form-group p_star">
+                <label for="address1">배송메세지(100자내외)</label>
                 <input type="text" class="form-control"/>
-                <span class="placeholder" data-placeholder="배송메세지(100자내외)"></span>
               </div>
 
               <div class="container mt-5">
@@ -114,34 +113,38 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>
-                      <div class="media">
-                        <img src="https://cdn3-aka.makeshop.co.kr/shopimages/09women/0360080067193.gif" class="mr-3" alt="상품 이미지" style="width: 50px;">
-                        <div class="media-body">
-                          <h5 class="mt-0" name="productName">쿨링드 썸머 와이드 팬츠</h5>
-                        </div>
-                      </div>
-                    </td>
-                    <td>1</td>
-                    <td name="productPrice">10,000원</td>
-                  </tr>
+                  <th:block th:each="cart : ${cartList}">
+                    <tr>
+                      <td>
+                        <a th:href="'/single-product.html?productNo=' + ${cart.product.productNo}">
+                          <div class="media">
+                            <img th:src="${'/files/' + cart.product.fileName1}" class="mr-3" alt="상품 이미지" style="width: 50px;">
+                            <div class="media-body">
+                              <h5 class="mt-0" th:text="${cart.product.productName}"></h5>
+                            </div>
+                          </div>
+                        </a>
+                      </td>
+                      <td>1</td>
+                      <td th:text="${#numbers.formatInteger(cart.product.productPrice, 3, 'COMMA')} + '원'"></td>
+                    </tr>
+                  </th:block>
                   </tbody>
                 </table>
                 <table class="table">
                   <tbody>
-                  <tr class="total">
-                    <td colspan="3" class="text-right"><strong>총 상품 금액:</strong></td>
-                    <td>59,800원</td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" class="text-right"><strong>배송비:</strong></td>
-                    <td>2,500원</td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" class="text-right"><strong>결제 예정 금액:</strong></td>
-                    <td>62,300원</td>
-                  </tr>
+                    <tr class="total">
+                      <td colspan="3" class="text-right"><strong>총 상품 금액:</strong></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="text-right"><strong>배송비:</strong></td>
+                      <td>2,500원</td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="text-right"><strong>결제 예정 금액:</strong></td>
+                      <td></td>
+                    </tr>
                   </tbody>
                 </table>
               </div>

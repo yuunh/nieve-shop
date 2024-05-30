@@ -9,7 +9,6 @@ import com.nieve.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
-
 
 @Controller
 public class HomeController {
@@ -55,16 +53,19 @@ public class HomeController {
     }
 
     private Optional<Product> pickRandom(List<Product> cate) {
-        if(cate != null && !cate.isEmpty()){
+        if (cate != null && !cate.isEmpty()) {
+
             int size = cate.size();
 
             Random r = new Random();
+
             int pick = r.nextInt(size);
+
             return Optional.of(cate.get(pick));
-        }else{
+
+        } else {
             return Optional.empty();
         }
-
     }
 
     @GetMapping("/login.html")
@@ -85,11 +86,29 @@ public class HomeController {
         return "tracking";
     }
 
-    @GetMapping("/checkout.html")
-    public String checkout(@AuthenticationPrincipal CustomUser user) {
+//    @GetMapping("/payment.html")
+//    public String payment(@AuthenticationPrincipal CustomUser user) {
+//
+//        List<Cart> cartList = cartService.getCartOfMember(user.getMemNo());
+//        return "payment";
+//    }
 
-        List<Cart> cartList = cartService.getCartOfMember(user.getMemNo());
-        return "checkout";
+    @GetMapping("/payment.html")
+    public String payment(Model m) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            System.out.println("auth " + authentication);
+            CustomUser user = (CustomUser) authentication.getPrincipal();
+
+            Member member = memberService.getMember(user.getMemNo());
+            m.addAttribute("member", member);
+
+            List<Cart> cartList = cartService.getCartOfMember(user.getMemNo());
+            m.addAttribute("cartList", cartList);
+
+        }
+
+        return "payment";
     }
 
     @PostMapping("memberInsert")
@@ -107,6 +126,7 @@ public class HomeController {
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             System.out.println("auth " + authentication);
             CustomUser user = (CustomUser) authentication.getPrincipal();
+
             Member member = memberService.getMember(user.getMemNo());
             m.addAttribute("member", member);
         }

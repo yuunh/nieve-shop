@@ -35,7 +35,6 @@ public class CartController {
         System.out.println(user);
 
         List<Cart> cartList = cartService.getCartOfMember(user.getMemNo());
-
         m.addAttribute("cartList", cartList);
 
         return "cart";

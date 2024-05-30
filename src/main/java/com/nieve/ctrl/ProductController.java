@@ -1,13 +1,14 @@
 package com.nieve.ctrl;
 
-import com.nieve.model.Category;
-import com.nieve.model.Product;
-import com.nieve.model.Review;
+import com.nieve.config.CustomUser;
+import com.nieve.model.*;
+import com.nieve.service.MemberService;
 import com.nieve.service.ProductService;
 import com.nieve.service.ReviewService;
 import com.nieve.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,8 @@ public class ProductController {
     private StorageService storageService;
     @Autowired
     private ReviewService reviewService;
+    @Autowired
+    private MemberService memberService;
 
     @GetMapping("/product_paging.html")
     @ResponseBody
@@ -40,7 +43,6 @@ public class ProductController {
             return productService.getPagedProductListInCategory(categoryNo, page, order, dir);
         }
     }
-
 
     @GetMapping("/category.html")
     public String category(@RequestParam(value = "categoryNo", required = false) Integer categoryNo,
@@ -89,7 +91,6 @@ public class ProductController {
         return "confirmation";
     }
 
-
     @PostMapping("/writeReview")
     @ResponseBody
     public String writeReview(@ModelAttribute Review review, @RequestParam("reviewImg") MultipartFile imageFile) {
@@ -100,5 +101,6 @@ public class ProductController {
 
         return "redirect:/single-product.html";
     }
-    
+
+
 }
