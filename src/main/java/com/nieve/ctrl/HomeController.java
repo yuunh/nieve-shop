@@ -68,12 +68,6 @@ public class HomeController {
         }
     }
 
-    @GetMapping("/login.html")
-    public String login() {
-
-        return "login";
-    }
-
     @GetMapping("/memberEnrollForm.html")
     public String enrollForm() {
 
@@ -85,13 +79,6 @@ public class HomeController {
 
         return "tracking";
     }
-
-//    @GetMapping("/payment.html")
-//    public String payment(@AuthenticationPrincipal CustomUser user) {
-//
-//        List<Cart> cartList = cartService.getCartOfMember(user.getMemNo());
-//        return "payment";
-//    }
 
     @GetMapping("/payment.html")
     public String payment(Model m) {

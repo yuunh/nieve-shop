@@ -14,7 +14,7 @@ public class Product {
     private int productNo;
     private String productName;
     private String productDesc;
-    private double productPrice;
+    private Integer productPrice;
     private int productStock;
     private String productState;
     private int fileNo1;

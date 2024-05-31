@@ -2,13 +2,13 @@ package com.nieve.ctrl;
 
 import com.nieve.config.CustomUser;
 import com.nieve.model.*;
-import com.nieve.service.MemberService;
-import com.nieve.service.ProductService;
-import com.nieve.service.ReviewService;
-import com.nieve.service.StorageService;
+import com.nieve.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +29,11 @@ public class ProductController {
     private ReviewService reviewService;
     @Autowired
     private MemberService memberService;
+    @Autowired
+    private CartService cartService;
+
+    @Autowired
+    private ProductOrderService productOrderService;
 
     @GetMapping("/product_paging.html")
     @ResponseBody
@@ -79,6 +84,31 @@ public class ProductController {
         m.addAttribute("reviewList", reviewList);
 
         return "single-product";
+    }
+
+    @PostMapping("/orderAdd")
+    @ResponseBody
+    public String orderAdd(@RequestBody ProductOrder productOrder) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            System.out.println("auth " + authentication);
+            CustomUser user = (CustomUser) authentication.getPrincipal();
+
+            Member member = memberService.getMember(user.getMemNo());
+
+            List<Cart> cartList = cartService.getCartOfMember(user.getMemNo());
+
+            Integer subTotal = 0;
+            for(Cart c : cartList){
+                Integer price = c.getCartStock() * c.getProduct().getProductPrice();
+                subTotal += price;
+            }
+
+            productOrderService.addOrder(subTotal, productOrder.getAddress());
+
+        }
+        return "ok";
     }
 
     @GetMapping("/confirmation.html")

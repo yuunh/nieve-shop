@@ -31,6 +31,7 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form.defaultSuccessUrl("/")
                         .loginPage("/login.html").permitAll()
+                        .loginProcessingUrl("/loginProc")
                         .usernameParameter("memEmail")
                         .passwordParameter("memPwd"));
 

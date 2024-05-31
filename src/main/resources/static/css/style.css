@@ -518,7 +518,9 @@ ul {
   color: #fff;
   text-transform: uppercase;
   font-weight: 400;
+  /*
   box-shadow: -1.717px 8.835px 29.76px 2.24px rgba(255, 51, 104, 0.18);
+  */
   border: 1px solid #ff3368;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -5335,7 +5337,9 @@ ul {
 /* line 1901, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
 .login_part .login_part_text {
   background-image: -moz-linear-gradient(16deg, #ff005a 0%, #ff5d2d 64%, #ffba00 100%);
+/*
   background-image: -webkit-linear-gradient(16deg, #ff005a 0%, #ff5d2d 64%, #ffba00 100%);
+*/
   background-image: -ms-linear-gradient(16deg, #ff005a 0%, #ff5d2d 64%, #ffba00 100%);
   background-size: 200% auto;
 }
@@ -5345,20 +5349,20 @@ ul {
   font-size: 24px;
   font-weight: 700;
   line-height: 35px;
-  color: #fff;
+  color: #000000;
   margin-bottom: 17px;
 }
 
 /* line 1913, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
 .login_part .login_part_text p {
-  color: #fff;
+  color: #000;
   line-height: 25px;
 }
 
 /* line 1917, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
 .login_part .login_part_text .btn_3 {
   border: 1px solid #ffc2d2;
-  background-color: transparent;
+  /* background-color: transparent; */
   font-size: 14px;
   margin-top: 28px;
 }
