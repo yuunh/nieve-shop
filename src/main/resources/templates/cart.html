@@ -72,7 +72,7 @@
             </thead>
             <tbody>
               <th:block th:each="cart : ${cartList}">
-                <tr th:id="'cart-item-[[' + ${cart.cartNo} + ']]'">
+                <tr th:id="'cart-item-' + ${cart.cartNo}">
                   <td>
                     <div class="media">
                       <div class="d-flex">
@@ -220,7 +220,7 @@
           })
           .then(response => {
               if (response.ok) {
-                  document.getElementById(`cart-item-${cartNo}`).remove();
+                  $(`#cart-item-${cartNo}`).remove();
                   alert("항목이 성공적으로 삭제되었습니다!");
               } else {
                   alert("항목 삭제에 실패했습니다.");

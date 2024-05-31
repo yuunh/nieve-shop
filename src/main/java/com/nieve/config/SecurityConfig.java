@@ -29,7 +29,11 @@ public class SecurityConfig {
                     .requestMatchers("/writeReview").hasRole("USER")
                     .requestMatchers("/myPage.html").hasRole("USER")
                 )
-                .formLogin(form -> form.defaultSuccessUrl("/"));
+                .formLogin(form -> form.defaultSuccessUrl("/")
+                        .loginPage("/login.html").permitAll()
+                        .usernameParameter("memEmail")
+                        .passwordParameter("memPwd"));
+
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();
     }
