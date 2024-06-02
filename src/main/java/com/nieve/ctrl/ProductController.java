@@ -95,9 +95,13 @@ public class ProductController {
             System.out.println("auth " + authentication);
             CustomUser user = (CustomUser) authentication.getPrincipal();
 
-            Member member = memberService.getMember(user.getMemNo());
+            Integer memNo = user.getMemNo();
 
-            List<Cart> cartList = cartService.getCartOfMember(user.getMemNo());
+            Member member = memberService.getMember(memNo);
+            //Member member = memberService.getMember(user.getMemNo());
+
+            List<Cart> cartList = cartService.getCartOfMember(memNo);
+            //List<Cart> cartList = cartService.getCartOfMember(user.getMemNo());
 
             Integer subTotal = 0;
             for(Cart c : cartList){
@@ -105,7 +109,7 @@ public class ProductController {
                 subTotal += price;
             }
 
-            productOrderService.addOrder(subTotal, productOrder.getAddress());
+            productOrderService.addOrder(subTotal, productOrder.getAddress(), productOrder.getMessage(), productOrder.getPhone(), productOrder.getPostNo());
 
         }
         return "ok";

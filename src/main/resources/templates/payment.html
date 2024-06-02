@@ -83,7 +83,7 @@
               </div>
               <div class="col-md-12 form-group p_star">
                 <label for="phone">전화번호</label>
-                <input type="text" class="form-control" id="number" name="number" />
+                <input type="text" class="form-control" name="phone" />
               </div>
               <div class="col-md-6 form-group p_star">
                 <label for="address1">주소</label>
@@ -99,8 +99,8 @@
                 <input type="text" class="form-control" id="address2" name="address2" th:value="${member.address2}"/>
               </div>
               <div class="col-md-12 form-group p_star">
-                <label for="address1">배송메세지(100자내외)</label>
-                <input type="text" class="form-control"/>
+                <label for="message">배송메세지(100자내외)</label>
+                <input type="text" class="form-control" id="message" name="message"/>
               </div>
 
               <div class="container mt-5">
@@ -222,7 +222,7 @@
   <script src="js/jquery.form.js"></script>
   <script src="js/jquery.validate.min.js"></script>
   <script src="js/mail-script.js"></script>
-  <script src="js/stellar.js"></script>x
+  <script src="js/stellar.js"></script>
   <script src="js/price_rangs.js"></script>
   <!-- custom js -->
   <script src="js/custom.js"></script>
@@ -230,15 +230,24 @@
   <script type="text/javascript">
 
     function orderAdd() {
+
+      const data = {
+        "address": $("#address1").val() + " " + $("#address2").val(), // 주소 사이에 공백 추가
+        "postNo": $("#postNo").val(),
+        "message": $("#message").val(),
+        "phone": $("#phone").val(),
+        "memNo": $("#memNo").val()
+      };
+
+      console.log("Sending data:", JSON.stringify(data));
+
       $.ajax({
         method: "POST",
         url: "/orderAdd",
         contentType: "application/json; charset=UTF-8",
-        data: JSON.stringify({
-          "address": $("#address1").val() + $("#address2").val()
-        }),
+        data: JSON.stringify(data),
         success : function(result) {
-
+          confirmBuy();
         }
       });
     }

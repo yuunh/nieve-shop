@@ -22,7 +22,7 @@ public class ProductOrderEntity {
     private String orderState;
     private String address;
     private Integer postNo;
-    private Integer phone;
+    private String phone;
     private Integer totalPrice;
     private String message;
 
