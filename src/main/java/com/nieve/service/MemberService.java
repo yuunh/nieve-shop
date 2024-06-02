@@ -32,6 +32,7 @@ public class MemberService {
                 .memName(member.getMemName())
                 .phone(member.getPhone())
                 .address1(member.getAddress1())
+                .postNo(member.getPostNo())
                 .build();
         memberRepository.save(me);
     }

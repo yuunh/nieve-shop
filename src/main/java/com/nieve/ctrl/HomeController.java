@@ -68,8 +68,14 @@ public class HomeController {
         }
     }
 
-    @GetMapping("/memberEnrollForm.html")
+    @GetMapping("/enrollForm.html")
     public String enrollForm() {
+
+        return "enrollForm";
+    }
+
+    @GetMapping("/memberEnrollForm.html")
+    public String memberEnrollForm() {
 
         return "memberEnrollForm";
     }
@@ -104,7 +110,7 @@ public class HomeController {
 
         memberService.memberInsert(member);
 
-        return "ok";
+        return "index.html";
     }
 
     @GetMapping("/myPage.html")

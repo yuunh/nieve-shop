@@ -1,5 +1,4 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <!-- Required meta tags -->
@@ -43,7 +42,7 @@
 
             <div class="form-group">
                 <label for="address1">주소 :</label>
-                <input type="text"  id="zipcode" name="postNo" onclick="openZipSearch();" placeholder="우편번호">
+                <input type="text"  class="form-control" id="zipcode" name="postNo" onclick="openZipSearch();" placeholder="우편번호">
                 <button id="zipcodeBtn" type="button" class="btn btn-outline-primary" onclick="selectZipcode();" style="width: 35%;">우편번호 검색</button><br>
                 <input type="text"  id="address1" name="address1" placeholder="기본주소">
                 <input type="text"  id="address2" name="address2" placeholder="상세주소"  style="width:250px;">

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -23,7 +24,7 @@ public class Member {
     private String postNo;
     private String adCheck;
     private String memState;
-    private Date enrollDate;
+    private LocalDateTime enrollDate;
 
 
 }

@@ -121,7 +121,7 @@
                           <div class="media">
                             <img th:src="${'/files/' + cart.product.fileName1}" class="mr-3" alt="상품 이미지" style="width: 50px;">
                             <div class="media-body">
-                              <h5 class="mt-0" th:text="${cart.product.productName}"></h5>
+                              <h5 class="mt-0" name="productName" th:text="${cart.product.productName}"></h5>
                             </div>
                           </div>
                         </a>
@@ -232,7 +232,7 @@
     function orderAdd() {
 
       const data = {
-        "address": $("#address1").val() + " " + $("#address2").val(), // 주소 사이에 공백 추가
+        "address": $("#address1").val() + " " + $("#address2").val(),
         "postNo": $("#postNo").val(),
         "message": $("#message").val(),
         "phone": $("#phone").val(),
@@ -265,10 +265,14 @@
 
       const priceSum = parseInt($("#subtotal").text());
 
-      PortOne.requestPayment({
-        // Store ID 설정
+      console.log("orderName : " + orderName);
+      console.log("priceSum : " + priceSum);
 
+      PortOne.requestPayment({
+
+        // Store ID 설정
         storeId: "store-75557aa8-5f21-452a-9e2c-0ea435b48e2a",
+
         // 채널 키 설정
         channelKey: "channel-key-fa24fffc-de3e-40e0-ae09-ddc7835e7721",
         paymentId: `payment-${crypto.randomUUID()}`,
