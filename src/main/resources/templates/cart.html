@@ -84,7 +84,7 @@
                     </div>
                   </td>
                   <td>
-                    <h5 th:text="'$' + ${cart.product.productPrice}" name="productPrice"></h5>
+                    <h5 th:text="${#numbers.formatInteger(cart.product.productPrice, 3, 'COMMA')} + '원'" name="productPrice"></h5>
                   </td>
                   <td>
                     <div class="product_count">
@@ -94,7 +94,7 @@
                     </div>
                   </td>
                   <td>
-                    <h5 th:text="'$' + ${cart.product.productPrice * cart.cartStock}"></h5>
+                    <h5 name="productTotalPrice" th:text="${#numbers.formatInteger(cart.product.productPrice * cart.cartStock, 3, 'COMMA')} + '원'"></h5>
                   </td>
                   <td>
                     <button type="button" class="btn btn-outline-secondary" th:onclick="'deleteItem(' + ${cart.cartNo} + ')'">삭제</button>
@@ -105,10 +105,10 @@
                 <td></td>
                 <td></td>
                 <td>
-                  <h5>Subtotal</h5>
+                  <h5>총 합계</h5>
                 </td>
                 <td>
-                  <h5 id="subtotal">2160.00</h5>
+                  <h5 id="subtotal"></h5>
                 </td>
               </tr>
             </tbody>
@@ -159,13 +159,27 @@
 
     <script type="text/javascript">
       $(document).ready(function(){
-    	$("input[name='cartStock']").on("change", function(evt){
-    	  alert("changed" + evt.target);
-    	});
+        $("input[name='cartStock']").change(onStockChange);
+        $("i[class^='ti-angle-']").click(function(){
+          $("input[name='cartStock']").trigger('change')
+        });
       });
 
-      function onStockChange(){
+      function onStockChange(evt){
+        const t = evt.target;
+        console.log(t);
+        const targetInput = $(t);
+        const inputs = $("input[name='cartStock']");
+        const index = inputs.index(targetInput);
+        const count = targetInput.val();
+        console.log("count : " + count);
+        const price = $("h5[name=productPrice]").eq(index).text().replace("$", "").replace("원", "").replace(",", "");
+        console.log("price : " + price);
 
+        // 총합계
+        const total = parseInt(price) * count;
+        console.log("total : " + total);
+        $("h5[name=productTotalPrice]").eq(index).text(total);
       }
 
       // 카카오 결제

@@ -180,7 +180,7 @@
                 </li>
                 <li>
                   <a href="#">최종 결제금액
-                    <span id="subtotal" th:text="${#numbers.formatInteger(#aggregates.sum(cartList.![product.productPrice]) + 2500, 3, 'COMMA') + '원'}"></span>
+                    <span id="subtotal" th:text="${#numbers.formatInteger(#aggregates.sum(cartList.![product.productPrice]) + 2500, 3, 'COMMA'), + '원'}"></span>
                   </a>
                 </li>
               </ul>

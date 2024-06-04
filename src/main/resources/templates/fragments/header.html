@@ -54,6 +54,7 @@
                                     <a class="dropdown-toggle" href="cart.html">
                                         <i class="fas fa-cart-plus"></i>
                                     </a>
+                                    <span class='badge' id='lblCartCount'> 5 </span>
                                 </div>
                             </div>
                         </nav>
@@ -71,5 +72,17 @@
             </div>
         </header>
     </div>
+    <script type="text/javascript">
+        $(function(){
+            $.ajax({
+                url: "/cartcount",
+                method: "get",
+                success: function(x, h, r){
+                    $(".main_menu .cart i").after("8");
+                }
+            });
+        });
+
+    </script>
 </body>
 </html>
