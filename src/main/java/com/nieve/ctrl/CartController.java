@@ -40,6 +40,13 @@ public class CartController {
         return "cart";
     }
 
+    @GetMapping("/cart/quantity")
+    @ResponseBody
+    public int getCartQuantity(@AuthenticationPrincipal CustomUser user) {
+        List<Cart> cartList = cartService.getCartOfMember(user.getMemNo());
+        return cartList.size();
+    }
+
     @PostMapping("/addCart")
     @ResponseBody
     public String addCart(@RequestBody Cart cart) {
