@@ -2,33 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>주문서</title>
   <link rel="icon" href="img/favicon.png">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <!-- animate CSS -->
-  <link rel="stylesheet" href="css/animate.css">
-  <!-- owl carousel CSS -->
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <!-- nice select CSS -->
-  <link rel="stylesheet" href="css/nice-select.css">
-  <!-- font awesome CSS -->
-  <link rel="stylesheet" href="css/all.css">
-  <!-- flaticon CSS -->
-  <link rel="stylesheet" href="css/flaticon.css">
-  <link rel="stylesheet" href="css/themify-icons.css">
-  <!-- font awesome CSS -->
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <!-- swiper CSS -->
-  <link rel="stylesheet" href="css/slick.css">
-  <link rel="stylesheet" href="css/price_rangs.css">
-  <!-- style CSS -->
-  <link rel="stylesheet" href="css/style.css">
 
-  <script src="https://cdn.portone.io/v2/browser-sdk.js"></script>
+  <th:block th:include="fragments/header :: 'header_css'"></th:block>
+  <th:block th:include="fragments/header :: 'header_js'"></th:block>
 </head>
 
 <body>
@@ -36,8 +16,6 @@
   <div th:replace="fragments/header :: 'header'"></div>
   <!-- Header part end-->
 
-  <!--================Home Banner Area =================-->
-  <!-- breadcrumb start-->
   <section class="breadcrumb breadcrumb_bg">
     <div class="container">
       <div class="row justify-content-center">
@@ -126,8 +104,8 @@
                           </div>
                         </a>
                       </td>
-                      <td>1</td>
-                      <td th:text="${#numbers.formatInteger(cart.product.productPrice, 3, 'COMMA')} + '원'">
+                      <td th:text="${cart.cartStock}"></td>
+                      <td th:text="${#numbers.formatInteger((cart.product.productPrice * cart.cartStock), 3, 'COMMA')} + '원'">
                         <input type="hidden" name="productPrice">
                       </td>
                     </tr>
@@ -180,7 +158,7 @@
                 </li>
                 <li>
                   <a href="#">최종 결제금액
-                    <span id="subtotal" th:text="${#numbers.formatInteger(#aggregates.sum(cartList.![product.productPrice]) + 2500, 3, 'COMMA'), + '원'}"></span>
+                    <span id="subtotal" th:text="${#numbers.formatInteger(#aggregates.sum(cartList.![product.productPrice]) + 2500, 3, 'COMMA') + '원'}"></span>
                   </a>
                 </li>
               </ul>
@@ -197,43 +175,13 @@
   <div th:replace="fragments/footer :: 'footer'"></div>
   <!--::footer_part end::-->
 
-  <!-- jquery plugins here-->
-  <!-- jquery -->
-  <script src="js/jquery-1.12.1.min.js"></script>
-  <!-- popper js -->
-  <script src="js/popper.min.js"></script>
-  <!-- bootstrap js -->
-  <script src="js/bootstrap.min.js"></script>
-  <!-- easing js -->
-  <script src="js/jquery.magnific-popup.js"></script>
-  <!-- swiper js -->
-  <script src="js/swiper.min.js"></script>
-  <!-- swiper js -->
-  <script src="js/masonry.pkgd.js"></script>
-  <!-- particles js -->
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.nice-select.min.js"></script>
-  <!-- slick js -->
-  <script src="js/slick.min.js"></script>
-  <script src="js/jquery.counterup.min.js"></script>
-  <script src="js/waypoints.min.js"></script>
-  <script src="js/contact.js"></script>
-  <script src="js/jquery.ajaxchimp.min.js"></script>
-  <script src="js/jquery.form.js"></script>
-  <script src="js/jquery.validate.min.js"></script>
-  <script src="js/mail-script.js"></script>
-  <script src="js/stellar.js"></script>
-  <script src="js/price_rangs.js"></script>
-  <!-- custom js -->
-  <script src="js/custom.js"></script>
-
   <script type="text/javascript">
 
     function orderAdd() {
 
       const data = {
         "address": $("#address1").val() + " " + $("#address2").val(),
-        "postNo": $("#postNo").val(),
+        "postNo": $("#zipcode").val(),
         "message": $("#message").val(),
         "phone": $("#phone").val(),
         "memNo": $("#memNo").val()

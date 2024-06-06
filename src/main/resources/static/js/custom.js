@@ -356,5 +356,5 @@
     
 
 
-
+  $(".owl-nav").first().hide();
 }(jQuery));

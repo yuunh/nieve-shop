@@ -40,9 +40,9 @@ public class ProductService {
         return pes.map(ProductEntity::toModel);
     }
 
-    public Page<Product> getPagedProductList(int page, String criteria, String dir){
+    public Page<Product> getPagedProductList(String keyword, int page, String criteria, String dir){
         Pageable p = PageRequest.of(page, 6, "asc".equals(dir) ? Sort.Direction.ASC : Sort.Direction.DESC, criteria);
-        Page<ProductEntity> pes = productRepository.findAll(p);
+        Page<ProductEntity> pes = productRepository.findAllKeyword(keyword, p);
         return pes.map(ProductEntity::toModel);
     }
 

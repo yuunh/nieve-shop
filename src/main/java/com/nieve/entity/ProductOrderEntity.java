@@ -16,12 +16,11 @@ import org.hibernate.annotations.DynamicInsert;
 public class ProductOrderEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer orderNo;
+    private String orderNo;
     @ColumnDefault("'등록'")
     private String orderState;
     private String address;
-    private Integer postNo;
+    private String postNo;
     private String phone;
     private Integer totalPrice;
     private String message;

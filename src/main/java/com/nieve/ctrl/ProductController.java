@@ -37,20 +37,22 @@ public class ProductController {
 
     @GetMapping("/product_paging.html")
     @ResponseBody
-    public Page<Product> category(@RequestParam(value = "categoryNo", required = false) Integer categoryNo,
+    public Page<Product> category(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+                                  @RequestParam(value = "categoryNo", required = false) Integer categoryNo,
                                   @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
                                   @RequestParam(value = "criteria", required = false, defaultValue = "productNo") String order,
                                   @RequestParam(value="dir", required = false, defaultValue = "desc") String dir) {
 
         if(categoryNo == null){
-            return productService.getPagedProductList(page, order, dir);
+            return productService.getPagedProductList(keyword, page, order, dir);
         }else {
             return productService.getPagedProductListInCategory(categoryNo, page, order, dir);
         }
     }
 
     @GetMapping("/category.html")
-    public String category(@RequestParam(value = "categoryNo", required = false) Integer categoryNo,
+    public String category(@RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+                           @RequestParam(value = "categoryNo", required = false) Integer categoryNo,
                            @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
                            @RequestParam(value = "criteria", required = false, defaultValue = "productNo") String order,
                            @RequestParam(value="dir", required = false, defaultValue = "desc") String dir,
@@ -58,7 +60,7 @@ public class ProductController {
 
         Page<Product> productList;
         if(categoryNo == null){
-            productList = productService.getPagedProductList(page, order, dir);
+            productList = productService.getPagedProductList(keyword, page, order, dir);
         }else {
             productList =  productService.getPagedProductListInCategory(categoryNo, page, order, dir);
         }
