@@ -120,9 +120,9 @@ public class ProductController {
     @GetMapping("/confirmation.html")
     public String confirmation(Model m) {
 
-        List<Product> confirmationList = new ArrayList<>();
+        List<ProductOrder> orderList = productOrderService.getOrderList();
 
-        m.addAttribute("confirmationList", confirmationList);
+        m.addAttribute("orderList", orderList);
 
         return "confirmation";
     }

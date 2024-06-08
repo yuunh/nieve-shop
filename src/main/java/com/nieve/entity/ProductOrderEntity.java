@@ -30,4 +30,7 @@ public class ProductOrderEntity {
     @JoinColumn(name="memNo", unique = false)
     private MemberEntity member;
 
+    @ManyToOne
+    @JoinColumn(name="productNo", unique = false)
+    private ProductEntity product;
 }

@@ -11,13 +11,8 @@
 </head>
 
 <body>
-    <!--::header part start::-->
     <div th:replace="fragments/header :: 'header'"></div>
-    <!-- Header part end-->
 
-
-  <!--================Home Banner Area =================-->
-  <!-- breadcrumb start-->
   <section class="breadcrumb breadcrumb_bg">
     <div class="container">
       <div class="row justify-content-center">
@@ -32,9 +27,6 @@
       </div>
     </div>
   </section>
-  <!-- breadcrumb start-->
-
-  <!--================Cart Area =================-->
   <section class="cart_area padding_top">
     <div class="container">
       <div class="cart_inner">
@@ -99,12 +91,8 @@
       </div>
     </div>
   </section>
-  <!--================End Cart Area =================-->
 
-
-  <!--::footer_part start::-->
   <div th:replace="fragments/footer :: 'footer'"></div>
-  <!--::footer_part end::-->
 
   <script type="text/javascript">
     function formatCurrency(number) {
@@ -235,6 +223,5 @@
             });
         });
   </script>
-
 </body>
 </html>

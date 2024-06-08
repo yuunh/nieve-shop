@@ -51,7 +51,6 @@
             </div>
         </div>
     </section>
-
     <section class="feature_part padding_top">
         <div class="container">
             <div class="row justify-content-center">
@@ -63,7 +62,6 @@
             </div>
             <div class="row align-items-center justify-content-between">
                 <th:block th:each="product, idx : ${categories}">
-
                     <div th:class="${((idx.index % 4) == 0 || (idx.index % 4) == 3) ? 'col-lg-7 col-sm-7' : 'col-lg-5 col-sm-5'}">
                         <div class="single_feature_post_text">
                             <p th:text="${product.categoryName}"></p>
@@ -77,7 +75,6 @@
             </div>
         </div>
     </section>
-
     <section class="product_list best_seller section_padding">
         <div class="container">
             <div class="row justify-content-center">

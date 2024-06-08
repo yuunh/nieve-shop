@@ -12,9 +12,7 @@
 </head>
 
 <body>
-  <!--::header part start::-->
   <div th:replace="fragments/header :: 'header'"></div>
-  <!-- Header part end-->
 
   <section class="breadcrumb breadcrumb_bg">
     <div class="container">
@@ -30,9 +28,6 @@
       </div>
     </div>
   </section>
-  <!-- breadcrumb start-->
-
-  <!--================Checkout Area =================-->
   <section class="checkout_area padding_top">
     <div class="container">
       <div class="billing_details">
@@ -53,7 +48,6 @@
                 <label for="memEmail">이메일</label>
                 <input type="email" class="form-control" id="memEmail" name="memEmail" th:value="${member.memEmail}" />
               </div>
-
               <h3>배송 정보</h3>
               <div class="col-md-12 form-group p_star">
                 <label for="memName">받으실 분</label>
@@ -80,7 +74,6 @@
                 <label for="message">배송메세지(100자내외)</label>
                 <input type="text" class="form-control" id="message" name="message"/>
               </div>
-
               <div class="container mt-5">
                 <table class="table table-bordered">
                   <thead class="thead-light">
@@ -131,7 +124,6 @@
               </div>
             </form>
           </div>
-
           <div class="col-lg-4">
             <div class="order_box">
               <h2>최종 결제 금액</h2>
@@ -169,11 +161,8 @@
       </div>
     </div>
   </section>
-  <!--================End Checkout Area =================-->
 
-  <!--::footer_part start::-->
   <div th:replace="fragments/footer :: 'footer'"></div>
-  <!--::footer_part end::-->
 
   <script type="text/javascript">
 
@@ -232,5 +221,4 @@
     }
   </script>
 </body>
-
 </html>
