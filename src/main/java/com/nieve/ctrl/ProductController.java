@@ -45,7 +45,7 @@ public class ProductController {
 
         if(categoryNo == null){
             return productService.getPagedProductList(keyword, page, order, dir);
-        }else {
+        } else {
             return productService.getPagedProductListInCategory(categoryNo, page, order, dir);
         }
     }
@@ -61,10 +61,11 @@ public class ProductController {
         Page<Product> productList;
         if(categoryNo == null){
             productList = productService.getPagedProductList(keyword, page, order, dir);
-        }else {
-            productList =  productService.getPagedProductListInCategory(categoryNo, page, order, dir);
+        } else {
+            productList = productService.getPagedProductListInCategory(categoryNo, page, order, dir);
         }
         m.addAttribute("productList", productList);
+        m.addAttribute("productCount", productList.getTotalElements());
 
         List<Category> categoryList = productService.getCategoryListWithProductCount();
         m.addAttribute("categoryList", categoryList);
@@ -74,6 +75,7 @@ public class ProductController {
         m.addAttribute("dir", dir);
         return "category";
     }
+
 
     @GetMapping("/single-product.html")
     public String productDetail(@RequestParam("productNo") Integer productNo, Model m) {

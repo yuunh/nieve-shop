@@ -71,6 +71,7 @@
               <tbody>
                 <th:block th:each="order : ${orderList}">
                   <tr>
+                    <img th:src="" class="mr-3" alt="상품 이미지" style="width: 50px;">
                     <th colspan="2"><span th:text="${order.productName}"></span></th>
                     <th>x02</th>
                     <th> <span th:text="'$' + ${product.productPrice}"></span></th>
