@@ -161,3 +161,4 @@ INSERT INTO review (review_no, file_no, mem_no, product_no, review_title, review
 INSERT INTO `cart` (`cart_no`, `cart_stock`, `mem_no`, `product_no`) VALUES (1, 1, 1, 7);
 INSERT INTO `cart` (`cart_no`, `cart_stock`, `mem_no`, `product_no`) VALUES (2, 2, 1, 5);
 INSERT INTO `cart` (`cart_no`, `cart_stock`, `mem_no`, `product_no`) VALUES (3, 1, 2, 6);
+

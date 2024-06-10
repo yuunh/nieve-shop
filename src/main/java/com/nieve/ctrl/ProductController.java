@@ -121,10 +121,14 @@ public class ProductController {
 
     @GetMapping("/confirmation.html")
     public String confirmation(Model m) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            System.out.println("auth " + authentication);
+            CustomUser user = (CustomUser) authentication.getPrincipal();
 
-        List<ProductOrder> orderList = productOrderService.getOrderList();
-
-        m.addAttribute("orderList", orderList);
+            List<ProductOrder> orderList = productOrderService.getOrder(user.getMemNo());
+            m.addAttribute("orderList", orderList);
+        }
 
         return "confirmation";
     }

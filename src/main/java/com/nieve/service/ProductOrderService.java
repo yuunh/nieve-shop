@@ -1,11 +1,15 @@
 package com.nieve.service;
 
+import com.nieve.entity.CartEntity;
 import com.nieve.entity.MemberEntity;
 import com.nieve.entity.ProductEntity;
 import com.nieve.entity.ProductOrderEntity;
 import com.nieve.model.ProductOrder;
+import com.nieve.repository.MemberRepository;
 import com.nieve.repository.ProductOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -18,6 +22,7 @@ import java.util.UUID;
 @Service
 public class ProductOrderService {
     @Autowired private ProductOrderRepository productOrderRepository;
+    @Autowired private MemberRepository memberRepository;
 
     public int addOrder(Integer subtotal, String address, String message, String phone, String postNo) {
         String ymd = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyMMddHH"));
@@ -36,7 +41,10 @@ public class ProductOrderService {
         return 0;
     }
 
-    public List<ProductOrder> getOrderList() {
+    public List<ProductOrder> getOrderList(Integer memNo) {
+
+        MemberEntity member = memberRepository.findById(memNo).orElseThrow();
+        Example<CartEntity> ex = Example.of(CartEntity.builder().member(member).build());
 
         List<ProductOrderEntity> orderList = productOrderRepository.findAll();
 
@@ -54,5 +62,16 @@ public class ProductOrderService {
             orders.add(o);
         }
         return orders;
+    }
+
+    public List<ProductOrder> getOrder(Integer memNo) {
+
+        MemberEntity member = memberRepository.findById(memNo).orElseThrow();
+        Example<ProductOrderEntity> ex = Example.of(ProductOrderEntity.builder().member(member).build());
+        List<ProductOrderEntity> orders = productOrderRepository.findBy(ex, FluentQuery.FetchableFluentQuery::all).stream().toList();
+        List<ProductOrder> orderList = new ArrayList<>();
+        for (ProductOrderEntity oe : orders) {
+        }
+        return orderList;
     }
 }

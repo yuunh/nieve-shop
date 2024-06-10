@@ -26,6 +26,7 @@ public class SecurityConfig {
                     .requestMatchers("/writeReview").hasRole("USER")
                     .requestMatchers("/myPage.html").hasRole("USER")
                     .requestMatchers("/payment.html").hasRole("USER")
+                    .requestMatchers("/confirmation.html").hasRole("USER")
                     .requestMatchers("/").permitAll()
                     .requestMatchers("/**").permitAll()
                     .requestMatchers("/login").permitAll()

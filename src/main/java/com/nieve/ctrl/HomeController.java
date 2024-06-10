@@ -86,8 +86,27 @@ public class HomeController {
         return "tracking";
     }
 
+//    @GetMapping("/payment.html")
+//    public String payment(Model m) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+//            System.out.println("auth " + authentication);
+//            CustomUser user = (CustomUser) authentication.getPrincipal();
+//
+//            Member member = memberService.getMember(user.getMemNo());
+//            m.addAttribute("member", member);
+//
+//            List<Cart> cartList = cartService.getCartOfMember(user.getMemNo());
+//            m.addAttribute("cartList", cartList);
+//
+//        }
+//
+//        return "payment";
+//    }
+
     @GetMapping("/payment.html")
-    public String payment(Model m) {
+    public String payment(@RequestParam(name = "productNo", required = false) Integer productNo,
+                          @RequestParam(name = "quantity", required = false, defaultValue = "1") int quantity, Model m) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             System.out.println("auth " + authentication);
@@ -96,9 +115,18 @@ public class HomeController {
             Member member = memberService.getMember(user.getMemNo());
             m.addAttribute("member", member);
 
-            List<Cart> cartList = cartService.getCartOfMember(user.getMemNo());
-            m.addAttribute("cartList", cartList);
-
+            if (productNo != null) { // 상품 상세 페이지에서 결제 페이지로 넘어온 경우
+                Product product = productService.getProduct(productNo);
+                Cart cart = new Cart();
+                cart.setProduct(product);
+                cart.setCartStock(quantity);
+                List<Cart> cartList = new ArrayList<>();
+                cartList.add(cart);
+                m.addAttribute("cartList", cartList);
+            } else { // 장바구니에서 결제 페이지로 넘어온 경우
+                List<Cart> cartList = cartService.getCartOfMember(user.getMemNo());
+                m.addAttribute("cartList", cartList);
+            }
         }
 
         return "payment";

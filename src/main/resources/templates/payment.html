@@ -107,18 +107,18 @@
                 </table>
                 <table class="table">
                   <tbody>
-                    <tr class="total">
-                      <td colspan="3" class="text-right"><strong>총 상품 금액:</strong></td>
-                      <td th:text="${#numbers.formatInteger(#aggregates.sum(cartList.![product.productPrice * cartStock]), 3, 'COMMA') + '원'}"></td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" class="text-right"><strong>배송비:</strong></td>
-                      <td>2,500원</td>
-                    </tr>
-                    <tr>
-                      <td colspan="3" class="text-right"><strong>결제 예정 금액:</strong></td>
-                      <td th:text="${#numbers.formatInteger(#aggregates.sum(cartList.![product.productPrice * cartStock]) + 2500, 3, 'COMMA') + '원'}"></td>
-                    </tr>
+                  <tr class="total">
+                    <td colspan="3" class="text-right"><strong>총 상품 금액:</strong></td>
+                    <td th:text="${#numbers.formatInteger(#aggregates.sum(cartList.![product.productPrice * cartStock]), 3, 'COMMA') + '원'}"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" class="text-right"><strong>배송비:</strong></td>
+                    <td>2,500원</td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" class="text-right"><strong>결제 예정 금액:</strong></td>
+                    <td th:text="${#numbers.formatInteger(#aggregates.sum(cartList.![product.productPrice * cartStock]) + 2500, 3, 'COMMA') + '원'}"></td>
+                  </tr>
                   </tbody>
                 </table>
               </div>

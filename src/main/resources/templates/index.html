@@ -98,7 +98,7 @@
                                         <div class="single_product_text">
                                             <h4 th:text="${product.productName}"></h4>
                                             <h3 th:text="${product.productPrice} + '원'"></h3>
-                                            <a href="#" class="add_cart">+ 장바구니 추가하기<i class="ti-heart"></i></a>
+                                            <a onclick="javascript:addToCart()" class="add_cart">+ 장바구니 추가하기<i class="ti-heart"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -112,6 +112,24 @@
         </div>
     </section>
 
+    <script>
+        // 장바구니 추가
+         function addToCart() {
+            $.ajax({
+              method: "POST",
+              url: "/addCart",
+              contentType: "application/json; charset=UTF-8",
+              data: JSON.stringify({
+                "productNo" : $("#productNo").val(),
+                "cartStock": $("#cartStock").val()
+              }),
+              success : function(result) {
+                var myModal = new bootstrap.Modal(document.getElementById('cartModal'));
+                myModal.show();
+             }
+            });
+         }
+    </script>
     <div th:replace="fragments/footer :: 'footer'"></div>
 
     <th:block th:include="fragments/header :: 'header_js'"></th:block>

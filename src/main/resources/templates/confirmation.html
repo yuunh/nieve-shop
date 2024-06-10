@@ -38,19 +38,20 @@
         </div>
         <div class="col-lg-12 col-lx-4">
           <div class="single_confirmation_details">
+            <input type="hidden" name="memNo" th:value="${member.memNo}">
             <h4>주문 정보</h4>
             <ul>
               <li>
-                <p>주문번호</p><span>123456789123</span>
+                <p>주문번호</p><span th:value="${orderList.orderNo}"></span>
               </li>
               <li>
-                <p>주문자</p><span>이유나</span>
+                <p>주문자</p><span th:value="${orderList.member.memName}"></span>
               </li>
               <li>
-                <p>전화번호</p><span>01079996044</span>
+                <p>전화번호</p><span th:value="${orderList.member.phone}"></span>
               </li>
               <li>
-                <p>이메일</p><span>ajfkda@naver.com</span>
+                <p>이메일</p><span th:value="${orderList.member.getMemEmail}"></span>
               </li>
             </ul>
           </div>
@@ -72,9 +73,9 @@
                 <th:block th:each="order : ${orderList}">
                   <tr>
                     <img th:src="" class="mr-3" alt="상품 이미지" style="width: 50px;">
-                    <th colspan="2"><span th:text="${order.productName}"></span></th>
-                    <th>x02</th>
-                    <th> <span th:text="'$' + ${product.productPrice}"></span></th>
+                    <th colspan="2"><span th:text="${orderList.product.productName}"></span></th>
+                    <th><span th:text="${orderList.product.productStock}"></span></th>
+                    <th> <span th:text="'$' + ${orderList.product.productPrice}"></span></th>
                   </tr>
                 </th:block>
               </tbody>

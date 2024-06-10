@@ -87,9 +87,9 @@
             <p th:text="${product.productDesc}"></p>
             <div class="card_area d-flex justify-content-between align-items-center">
               <div class="product_count">
-                <span class="inumber-decrement"> <i class="ti-minus"></i></span>
-                <input class="input-number" type="text" value="1" min="0" max="10" id="cartStock">
-                <span class="number-increment"> <i class="ti-plus"></i></span>
+                <span class="inumber-decrement" onclick="decrement()"> <i class="ti-minus"></i></span>
+                <input class="input-number" type="text" value="1" min="1" max="10" id="cartStock" readonly>
+                <span class="number-increment" onclick="increment()"> <i class="ti-plus"></i></span>
               </div>
             </div>
             <div class="card_area d-flex justify-content-between align-items-center">
@@ -100,7 +100,11 @@
                 <button onclick="javascript:alert('로그인 후 이용해주세요!')" class="btn_3">장바구니 추가</button>
               </div>
               <div sec:authorize="isAuthenticated()">
-                <button onclick="location.href='/payment.html'" class="btn_3">구매하기</button>
+                <form action="/payment.html" method="get" onsubmit="updateQuantity()">
+                  <input type="hidden" name="productNo" th:value="${product.productNo}">
+                  <input type="hidden" name="quantity" id="quantity" value="1">
+                  <button type="submit" class="btn_3">구매하기</button>
+                </form>
               </div>
               <div sec:authorize="isAnonymous()">
                 <button onclick="javascript:alert('로그인 후 이용해주세요!')" class="btn_3">구매하기</button>
@@ -279,6 +283,7 @@
   </section>
 
    <script>
+     // 장바구니 추가
      function addToCart() {
         $.ajax({
           method: "POST",
@@ -296,6 +301,36 @@
         });
      }
 
+    // 수량 변경
+    function increment() {
+        var input = document.getElementById('cartStock');
+        var value = parseInt(input.value, 10);
+        var max = parseInt(input.getAttribute('max'), 10);
+
+        if (value < max) {
+            value++;
+            input.value = value;
+        }
+    }
+
+    function decrement() {
+        var input = document.getElementById('cartStock');
+        var value = parseInt(input.value, 10);
+        var min = parseInt(input.getAttribute('min'), 10);
+
+        if (value > min) {
+            value--;
+            input.value = value;
+        }
+    }
+
+    function updateQuantity() {
+        var cartStock = document.getElementById('cartStock').value;
+        var quantity = document.getElementById('quantity');
+        quantity.value = cartStock;
+    }
+
+    // 리뷰 등록
      function submitReview() {
        var formData = new FormData();
        formData.append("reviewStar", $("#reviewStar").val());
