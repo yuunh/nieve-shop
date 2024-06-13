@@ -8,7 +8,7 @@ public class StorageProperties {
   /**
    * Folder location for storing files
    */
-  private String location = "C:\\Users\\LG\\Desktop\\nieve-dir";
+  private String location = "/home/ubuntu/upload";
 
   public String getLocation() {
     return location;

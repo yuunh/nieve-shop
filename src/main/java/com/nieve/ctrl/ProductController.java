@@ -129,7 +129,6 @@ public class ProductController {
             List<ProductOrder> orderList = productOrderService.getOrder(user.getMemNo());
             m.addAttribute("orderList", orderList);
         }
-
         return "confirmation";
     }
 
