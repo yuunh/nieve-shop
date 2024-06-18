@@ -7,14 +7,16 @@
 2024.04.30 ~ 2024.06.11 
 
 ## 🖥️ 개발 환경
-** Spring Boot
+### Spring Boot
 - MVC(Thymeleaf)
 - Security(Session)
 - Spring Data
 - JPA(JPQL)
-** DB
+
+### DB
 - MySQL
-** Infra / Tools
+  
+### Infra / Tools
 - Github
 - AWS EC2, Route 53
 - Postman
